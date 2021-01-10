@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OnlineRecruitmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CompanyPortal">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CompanyDesc" Type="varchar" MaxLength="254" Nullable="false" />
+          <Property Name="Logo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobApplicant">
+          <Key>
+            <PropertyRef Name="CandidateId" />
+          </Key>
+          <Property Name="CandidateId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Dob" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Gender" Type="bit" Nullable="false" />
+          <Property Name="UniversityName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="JobType" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobApplied">
+          <Key>
+            <PropertyRef Name="ApplicationNum" />
+          </Key>
+          <Property Name="ApplicationNum" Type="smallint" Nullable="false" />
+          <Property Name="CandidateId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="JobId" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JobPosting">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="JobDescription" Type="varchar" MaxLength="254" Nullable="false" />
+          <Property Name="CompanyId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PostedDate" Type="date" Nullable="false" />
+          <Property Name="LastDate" Type="date" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="JobName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="JobType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CandidateReq" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="QualificationId" />
+          </Key>
+          <Property Name="QualificationId" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="Percentage" Type="tinyint" Nullable="false" />
+          <Property Name="ApplicantId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="YearOfPassing" Type="date" Nullable="false" />
+          <Property Name="Experience" Type="tinyint" Nullable="false" />
+          <Property Name="HighestEducation" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecruitmentTeam">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="Phone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Dob" Type="date" Nullable="false" />
+          <Property Name="WorkExperience" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TestResult">
+          <Key>
+            <PropertyRef Name="TestId" />
+            <PropertyRef Name="JobId" />
+            <PropertyRef Name="CandidateId" />
+            <PropertyRef Name="Marks" />
+          </Key>
+          <Property Name="TestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobId" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="CandidateId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="Marks" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__JobApplie__Candi__44FF419A">
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
+          <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplicant">
+              <PropertyRef Name="CandidateId" />
+            </Principal>
+            <Dependent Role="JobApplied">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobApplie__JobId__45F365D3">
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
+          <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="JobApplied">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobPostin__Compa__4222D4EF">
+          <End Role="CompanyPortal" Type="Self.CompanyPortal" Multiplicity="1" />
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyPortal">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="JobPosting">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Qualifica__Appli__3A81B327">
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplicant">
+              <PropertyRef Name="CandidateId" />
+            </Principal>
+            <Dependent Role="Qualification">
+              <PropertyRef Name="ApplicantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestResul__Candi__48CFD27E">
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplicant">
+              <PropertyRef Name="CandidateId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestResul__JobId__47DBAE45">
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineRecruitmentModelStoreContainer">
+          <EntitySet Name="CompanyPortal" EntityType="Self.CompanyPortal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobApplicant" EntityType="Self.JobApplicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobApplied" EntityType="Self.JobApplied" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobPosting" EntityType="Self.JobPosting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecruitmentTeam" EntityType="Self.RecruitmentTeam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestResult" EntityType="Self.TestResult" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TestResult].[TestId] AS [TestId], 
+    [TestResult].[JobId] AS [JobId], 
+    [TestResult].[CandidateId] AS [CandidateId], 
+    [TestResult].[Marks] AS [Marks]
+    FROM [dbo].[TestResult] AS [TestResult]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__JobApplie__Candi__44FF419A" Association="Self.FK__JobApplie__Candi__44FF419A">
+            <End Role="JobApplicant" EntitySet="JobApplicant" />
+            <End Role="JobApplied" EntitySet="JobApplied" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobApplie__JobId__45F365D3" Association="Self.FK__JobApplie__JobId__45F365D3">
+            <End Role="JobPosting" EntitySet="JobPosting" />
+            <End Role="JobApplied" EntitySet="JobApplied" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobPostin__Compa__4222D4EF" Association="Self.FK__JobPostin__Compa__4222D4EF">
+            <End Role="CompanyPortal" EntitySet="CompanyPortal" />
+            <End Role="JobPosting" EntitySet="JobPosting" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Qualifica__Appli__3A81B327" Association="Self.FK__Qualifica__Appli__3A81B327">
+            <End Role="JobApplicant" EntitySet="JobApplicant" />
+            <End Role="Qualification" EntitySet="Qualification" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestResul__Candi__48CFD27E" Association="Self.FK__TestResul__Candi__48CFD27E">
+            <End Role="JobApplicant" EntitySet="JobApplicant" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestResul__JobId__47DBAE45" Association="Self.FK__TestResul__JobId__47DBAE45">
+            <End Role="JobPosting" EntitySet="JobPosting" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OnlineRecruitmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CompanyPortal">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyDesc" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__Compa__4222D4EF" FromRole="CompanyPortal" ToRole="JobPosting" />
+        </EntityType>
+        <EntityType Name="JobApplicant">
+          <Key>
+            <PropertyRef Name="CandidateId" />
+          </Key>
+          <Property Name="CandidateId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="Boolean" Nullable="false" />
+          <Property Name="UniversityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="JobApplieds" Relationship="Self.FK__JobApplie__Candi__44FF419A" FromRole="JobApplicant" ToRole="JobApplied" />
+          <NavigationProperty Name="Qualifications" Relationship="Self.FK__Qualifica__Appli__3A81B327" FromRole="JobApplicant" ToRole="Qualification" />
+          <NavigationProperty Name="TestResults" Relationship="Self.FK__TestResul__Candi__48CFD27E" FromRole="JobApplicant" ToRole="TestResult" />
+        </EntityType>
+        <EntityType Name="JobApplied">
+          <Key>
+            <PropertyRef Name="ApplicationNum" />
+          </Key>
+          <Property Name="ApplicationNum" Type="Int16" Nullable="false" />
+          <Property Name="CandidateId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobId" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="JobApplicant" Relationship="Self.FK__JobApplie__Candi__44FF419A" FromRole="JobApplied" ToRole="JobApplicant" />
+          <NavigationProperty Name="JobPosting" Relationship="Self.FK__JobApplie__JobId__45F365D3" FromRole="JobApplied" ToRole="JobPosting" />
+        </EntityType>
+        <EntityType Name="JobPosting">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobDescription" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="JobName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="JobType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CandidateReq" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CompanyPortal" Relationship="Self.FK__JobPostin__Compa__4222D4EF" FromRole="JobPosting" ToRole="CompanyPortal" />
+          <NavigationProperty Name="JobApplieds" Relationship="Self.FK__JobApplie__JobId__45F365D3" FromRole="JobPosting" ToRole="JobApplied" />
+          <NavigationProperty Name="TestResults" Relationship="Self.FK__TestResul__JobId__47DBAE45" FromRole="JobPosting" ToRole="TestResult" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="QualificationId" />
+          </Key>
+          <Property Name="QualificationId" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Percentage" Type="Byte" Nullable="false" />
+          <Property Name="ApplicantId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YearOfPassing" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Experience" Type="Byte" Nullable="false" />
+          <Property Name="HighestEducation" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="JobApplicant" Relationship="Self.FK__Qualifica__Appli__3A81B327" FromRole="Qualification" ToRole="JobApplicant" />
+        </EntityType>
+        <EntityType Name="RecruitmentTeam">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WorkExperience" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestResult">
+          <Key>
+            <PropertyRef Name="TestId" />
+            <PropertyRef Name="JobId" />
+            <PropertyRef Name="CandidateId" />
+            <PropertyRef Name="Marks" />
+          </Key>
+          <Property Name="TestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobId" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CandidateId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marks" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="JobApplicant" Relationship="Self.FK__TestResul__Candi__48CFD27E" FromRole="TestResult" ToRole="JobApplicant" />
+          <NavigationProperty Name="JobPosting" Relationship="Self.FK__TestResul__JobId__47DBAE45" FromRole="TestResult" ToRole="JobPosting" />
+        </EntityType>
+        <Association Name="FK__JobPostin__Compa__4222D4EF">
+          <End Role="CompanyPortal" Type="Self.CompanyPortal" Multiplicity="1" />
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyPortal">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="JobPosting">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobApplie__Candi__44FF419A">
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
+          <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplicant">
+              <PropertyRef Name="CandidateId" />
+            </Principal>
+            <Dependent Role="JobApplied">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Qualifica__Appli__3A81B327">
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplicant">
+              <PropertyRef Name="CandidateId" />
+            </Principal>
+            <Dependent Role="Qualification">
+              <PropertyRef Name="ApplicantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestResul__Candi__48CFD27E">
+          <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobApplicant">
+              <PropertyRef Name="CandidateId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="CandidateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobApplie__JobId__45F365D3">
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
+          <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="JobApplied">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestResul__JobId__47DBAE45">
+          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OnlineRecruitmentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CompanyPortals" EntityType="Self.CompanyPortal" />
+          <EntitySet Name="JobApplicants" EntityType="Self.JobApplicant" />
+          <EntitySet Name="JobApplieds" EntityType="Self.JobApplied" />
+          <EntitySet Name="JobPostings" EntityType="Self.JobPosting" />
+          <EntitySet Name="Qualifications" EntityType="Self.Qualification" />
+          <EntitySet Name="RecruitmentTeams" EntityType="Self.RecruitmentTeam" />
+          <EntitySet Name="TestResults" EntityType="Self.TestResult" />
+          <AssociationSet Name="FK__JobPostin__Compa__4222D4EF" Association="Self.FK__JobPostin__Compa__4222D4EF">
+            <End Role="CompanyPortal" EntitySet="CompanyPortals" />
+            <End Role="JobPosting" EntitySet="JobPostings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobApplie__Candi__44FF419A" Association="Self.FK__JobApplie__Candi__44FF419A">
+            <End Role="JobApplicant" EntitySet="JobApplicants" />
+            <End Role="JobApplied" EntitySet="JobApplieds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Qualifica__Appli__3A81B327" Association="Self.FK__Qualifica__Appli__3A81B327">
+            <End Role="JobApplicant" EntitySet="JobApplicants" />
+            <End Role="Qualification" EntitySet="Qualifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestResul__Candi__48CFD27E" Association="Self.FK__TestResul__Candi__48CFD27E">
+            <End Role="JobApplicant" EntitySet="JobApplicants" />
+            <End Role="TestResult" EntitySet="TestResults" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobApplie__JobId__45F365D3" Association="Self.FK__JobApplie__JobId__45F365D3">
+            <End Role="JobPosting" EntitySet="JobPostings" />
+            <End Role="JobApplied" EntitySet="JobApplieds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TestResul__JobId__47DBAE45" Association="Self.FK__TestResul__JobId__47DBAE45">
+            <End Role="JobPosting" EntitySet="JobPostings" />
+            <End Role="TestResult" EntitySet="TestResults" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OnlineRecruitmentModelStoreContainer" CdmEntityContainer="OnlineRecruitmentEntities">
+          <EntitySetMapping Name="CompanyPortals">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.CompanyPortal">
+              <MappingFragment StoreEntitySet="CompanyPortal">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyDesc" ColumnName="CompanyDesc" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobApplicants">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.JobApplicant">
+              <MappingFragment StoreEntitySet="JobApplicant">
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="UniversityName" ColumnName="UniversityName" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobApplieds">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.JobApplied">
+              <MappingFragment StoreEntitySet="JobApplied">
+                <ScalarProperty Name="ApplicationNum" ColumnName="ApplicationNum" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPostings">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.JobPosting">
+              <MappingFragment StoreEntitySet="JobPosting">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+                <ScalarProperty Name="CandidateReq" ColumnName="CandidateReq" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Qualifications">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.Qualification">
+              <MappingFragment StoreEntitySet="Qualification">
+                <ScalarProperty Name="QualificationId" ColumnName="QualificationId" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="ApplicantId" ColumnName="ApplicantId" />
+                <ScalarProperty Name="YearOfPassing" ColumnName="YearOfPassing" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="HighestEducation" ColumnName="HighestEducation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecruitmentTeams">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.RecruitmentTeam">
+              <MappingFragment StoreEntitySet="RecruitmentTeam">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="WorkExperience" ColumnName="WorkExperience" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestResults">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.TestResult">
+              <MappingFragment StoreEntitySet="TestResult">
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
