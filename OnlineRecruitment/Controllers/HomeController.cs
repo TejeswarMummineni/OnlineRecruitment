@@ -19,6 +19,18 @@ namespace OnlineRecruitment.Controllers
             return View(res.ToList().ToPagedList(page ?? 1, 3));
             
         }
+        public ActionResult CandidateClick()
+        {
+            return View();
+        }
+            [HttpPost]
+        public ActionResult CandidateClick(string jobid ,int ? page)
+        {
+            WelcomeBL wb = new WelcomeBL();
+            var res = wb.Welcomepage(jobid);
+            return View(res.ToList().ToPagedList(page ?? 1, 3));
+        }
+
 
         public ActionResult About()
         {

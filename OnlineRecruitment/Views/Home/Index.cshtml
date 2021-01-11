@@ -4,6 +4,7 @@
 }
 @using PagedList.Mvc;
 @using PagedList;
+
 <p>
     @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
     {
@@ -15,42 +16,27 @@
 <table>
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(model => item.JobId)
-        </td>
+        <tr>
+            <td>
+                <h1> @Html.DisplayFor(model => item.JobName)</h1>
+            </td>
+            <td>
 
+                <h3> @Html.DisplayFor(model => item.JobType)</h3>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.JobDescription)
+            </td>
+        </tr>
+        using (Html.BeginForm("CandidateClick", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+        {
 
-        <td>
-            @Html.DisplayFor(model => item.JobName)
-        </td>
-        <td>
+            <tr><td> <a href="CandidateClick?jobid=@item.JobId">Apply</a></td></tr>
 
-            @Html.DisplayFor(model => item.JobType)
-        </td>
-
-        <td>
-            @Html.DisplayFor(model => item.JobDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.CompanyId)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.PostedDate)
-        </td>
-
-        <td>
-            @Html.DisplayFor(model => item.LastDate)
-        </td>
-
-        <td>
-            @Html.DisplayFor(model => item.CandidateReq)
-        </td>
-    </tr>
-
+        }
     }
 </table>
 <div>
