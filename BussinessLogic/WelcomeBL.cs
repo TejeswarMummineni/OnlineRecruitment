@@ -13,7 +13,7 @@ namespace BussinessLogic
         WelcomeDAL wd = new WelcomeDAL();
         public List<JobPostingEntites> Welcomepage(string Search)
         {
-           return wd.Index(Search);
+           return wd.Welcomepage(Search);
         }
     }
 }

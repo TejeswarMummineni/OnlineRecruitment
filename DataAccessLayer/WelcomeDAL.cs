@@ -11,7 +11,7 @@ namespace DataAccessLayer
     public class WelcomeDAL
     {
         OnlineRecruitmentEntities db = new OnlineRecruitmentEntities();
-        public List<JobPostingEntites> Index(string Search)
+        public List<JobPostingEntites> Welcomepage(string Search)
         {
             List<JobPostingEntites> po = new List<JobPostingEntites>();
             var res = db.JobPostings.Where(x => x.JobType.StartsWith(Search) || Search == null);
