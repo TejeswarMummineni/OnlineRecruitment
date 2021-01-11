@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitmentUI", "OnlineRecruitmentUI\OnlineRecruitmentUI.csproj", "{D79C2EC0-8FAF-4FB8-BFEF-EB06334EAB37}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessEntites", "BussinessEntites\BussinessEntites.csproj", "{4D99B05F-77D3-476D-85B2-18518DB12020}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinessLogic", "BussinessLogic\BussinessLogic.csproj", "{024C4A85-47CC-4C14-8ECF-A1282863105D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{D63C1C13-D506-4F26-BA35-4636704CC947}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitment", "OnlineRecruitment\OnlineRecruitment.csproj", "{ABDE0813-B4B6-4104-A6F4-E80686011A73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D79C2EC0-8FAF-4FB8-BFEF-EB06334EAB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D79C2EC0-8FAF-4FB8-BFEF-EB06334EAB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D79C2EC0-8FAF-4FB8-BFEF-EB06334EAB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D79C2EC0-8FAF-4FB8-BFEF-EB06334EAB37}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D99B05F-77D3-476D-85B2-18518DB12020}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D99B05F-77D3-476D-85B2-18518DB12020}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D99B05F-77D3-476D-85B2-18518DB12020}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{D63C1C13-D506-4F26-BA35-4636704CC947}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D63C1C13-D506-4F26-BA35-4636704CC947}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D63C1C13-D506-4F26-BA35-4636704CC947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
