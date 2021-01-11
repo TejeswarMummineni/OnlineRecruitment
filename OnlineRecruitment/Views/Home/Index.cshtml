@@ -1,4 +1,60 @@
-﻿
+﻿@model IPagedList<BussinessEntites.JobPostingEntites>
 @{
     ViewBag.Title = "Home Page";
 }
+@using PagedList.Mvc;
+@using PagedList;
+<p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+    {
+        <label> Search Job Type</label>
+        <input type="text" name="Search" placeholder="Enter Job Sector" />
+        <input type="submit" value="Submit" />
+    }
+</p>
+<table>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.JobId)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(model => item.JobName)
+        </td>
+        <td>
+
+            @Html.DisplayFor(model => item.JobType)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => item.JobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.PostedDate)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => item.LastDate)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => item.CandidateReq)
+        </td>
+    </tr>
+
+    }
+</table>
+<div>
+
+    @Html.PagedListPager(Model, i => Url.Action("Index", "Home", new { i, Search = Request.QueryString["Search"] }))
+
+</div>
