@@ -12,23 +12,75 @@ namespace OnlineRecruitment.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Login(LoginEntites log)
+        {
+
+            LoginBL lb = new LoginBL();
+            int res = lb.Loginvalidate(log);
+            if (res == 1)
+            {
+                Session["user"] = log.Email;
+               
+                // Session["master"] = "EmployeeView";
+                // return View("Login", "EmployeeView");
+                return RedirectToAction("Cantact");
+
+            }
+            else if (res == 2)
+            {
+                Session["user"] = log.Email;
+                TempData["a"] = log.Email;
+                TempData.Keep();
+                // Session["master"] = "CandidateView";
+                //  return View("Login", "CandidateView");
+                return RedirectToAction("Index");
+            }
+            else if (res == 3)
+            {
+                Session["user"] = log.Email;
+                //  Session["master"] = "CompanyView";
+                // return View("Login", "CompanyView");
+                return RedirectToAction("About");
+            }
+            else
+            {
+                ViewData["err"] = "Access Denied!! invalid credentials";
+                return View();
+
+            }
+
+        }
         public ActionResult Index(string Search, int? page)
         {
+            TempData.Keep();
             WelcomeBL wb = new WelcomeBL();
             var res = wb.Welcomepage(Search);
             return View(res.ToList().ToPagedList(page ?? 1, 3));
             
         }
-        public ActionResult CandidateClick()
+
+            [HttpGet]
+        public ActionResult CandidateClick(JobAppliedEntites ja,string Email)
         {
+            Email=TempData["a"].ToString();
+            JobAppliedBL jd = new JobAppliedBL();
+            var res=jd.CandidateClick(ja, Email);
+            if (res > 0)
+            {
+                ViewData["a"] = "Applied Sucessfully";
+                Response.Redirect("Index");
+
+            }
+            else
+            {
+                ViewData["a"] = "You Are Already Exist";
+            }
             return View();
-        }
-            [HttpPost]
-        public ActionResult CandidateClick(string jobid ,int ? page)
-        {
-            WelcomeBL wb = new WelcomeBL();
-            var res = wb.Welcomepage(jobid);
-            return View(res.ToList().ToPagedList(page ?? 1, 3));
         }
 
 
@@ -43,6 +95,10 @@ namespace OnlineRecruitment.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Admin()
+        {
             return View();
         }
     }

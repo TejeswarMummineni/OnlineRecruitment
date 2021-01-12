@@ -45,6 +45,7 @@
     <Compile Include="JobApplicantEntites.cs" />
     <Compile Include="JobAppliedEntites.cs" />
     <Compile Include="JobPostingEntites.cs" />
+    <Compile Include="LoginEntites.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualificationEntites.cs" />
     <Compile Include="RecruitmentTeamEntites.cs" />
