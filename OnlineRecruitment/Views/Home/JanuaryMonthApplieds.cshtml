@@ -1,0 +1,44 @@
+﻿@model IPagedList<BussinessEntites.JobPostingEntites>
+@{
+    ViewBag.Title = "JanuaryMonthApplieds";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<h2>JanuaryMonthApplieds</h2>
+<table>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            <h1> @Html.DisplayFor(model => item.JobName)</h1>
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.JobType)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.JobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.CandidateReq)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.PostedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.LastDate)
+        </td>
+    </tr>
+
+    }
+</table>
+<div>
+
+    @Html.PagedListPager(Model, i => Url.Action("JanuaryMonthApplieds", "Home"))
+
+</div>

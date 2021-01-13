@@ -178,6 +178,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\CandidateClick.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\RegisterUser.cshtml" />
+    <Content Include="Views\Home\RegistredCompines.cshtml" />
+    <Content Include="Views\Home\PLacedApplicants.cshtml" />
+    <Content Include="Views\Home\JanuaryMonthApplieds.cshtml" />
+    <Content Include="Views\Home\TotalApplied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

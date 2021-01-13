@@ -1,0 +1,70 @@
+﻿@model BussinessEntites.AdminEntites
+@{
+    ViewBag.Title = "Admin";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<h2>Admin</h2>
+
+
+
+@using (Html.BeginForm("RegisterUser", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <a href="RegisterUser">
+        <div class="col-sm-4" style="background-color:yellow">
+            <h2><label>Total No Of Registred Users</label></h2>
+            @Html.DisplayFor(x => x.RegisterUsers)
+        </div>
+    </a>
+
+}
+
+@using (Html.BeginForm("RegistredCompines", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+
+<a href="RegistredCompines">
+    <div class="col-sm-4" style="background-color:yellow">
+        <h2><label>Total No Of Registred Compines</label></h2>
+        @Html.DisplayFor(x => x.RegisterCompines)
+    </div>
+</a>
+
+}
+@using (Html.BeginForm("PLacedApplicants", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <a href="PLacedApplicants">
+        <div class="col-sm-4" style="background-color:yellow">
+            <h2><label>Total No Of Users Got Placed</label></h2>
+            @Html.DisplayFor(x => x.gotplaced)
+        </div>
+    </a>
+
+}
+@using (Html.BeginForm("JanuaryMonthApplieds", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <a href="JanuaryMonthApplieds">
+        <div class="col-sm-4" style="background-color:yellow">
+            <h2><label>Total No Of Users Applied In Month January</label></h2>
+            @Html.DisplayFor(x => x.reqmonth)
+        </div>
+    </a>
+
+}
+@using (Html.BeginForm("TotalApplied", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+
+<a href="TotalApplied">
+    <div class="col-sm-4" style="background-color:yellow">
+        <h2><label>Total No Of Users Applied</label></h2>
+        @Html.DisplayFor(x => x.usersapplied)
+    </div>
+</a>
+
+}
+
+   
+    
+    
+   

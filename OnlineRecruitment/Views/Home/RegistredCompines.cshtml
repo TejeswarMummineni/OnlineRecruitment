@@ -1,0 +1,35 @@
+﻿@model IPagedList < BussinessEntites.CompanyPortalEntites>
+@{
+    ViewBag.Title = "RegistredCompines";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<h2>RegistredCompines</h2>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h1> @Html.DisplayFor(model => item.CompanyId)</h1>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CompanyDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Logo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+        </tr>
+
+    }
+</table>
+<div>
+
+    @Html.PagedListPager(Model, i => Url.Action("RegisteredCompines", "Home", new { i, Search = Request.QueryString["Search"] }))
+
+</div>

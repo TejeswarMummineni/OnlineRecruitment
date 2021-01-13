@@ -8,10 +8,12 @@ using PagedList;
 using BussinessEntites;
 using BussinessLogic;
 
+
 namespace OnlineRecruitment.Controllers
 {
     public class HomeController : Controller
     {
+        AdminBL ab = new AdminBL();
         public ActionResult Login()
         {
             return View();
@@ -64,10 +66,11 @@ namespace OnlineRecruitment.Controllers
             
         }
 
-            [HttpGet]
+            
         public ActionResult CandidateClick(JobAppliedEntites ja,string Email)
         {
             Email=TempData["a"].ToString();
+            TempData.Keep();
             JobAppliedBL jd = new JobAppliedBL();
             var res=jd.CandidateClick(ja, Email);
             if (res > 0)
@@ -82,8 +85,38 @@ namespace OnlineRecruitment.Controllers
             }
             return View();
         }
+        public ActionResult Admin(AdminEntites ae)
+        {
+            
+            ab.Registered(ae);
+            return View(ae);
+        }
+        public ActionResult RegisterUser(string Search, int? page)
+        {
+            var res = ab.RegisterUser(Search);
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
+        public ActionResult RegistredCompines(string Search, int? page)
+        {
+            var res = ab.RegistredCompines(Search);
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
+        public ActionResult PLacedApplicants( int? page)
+        {
+            var res = ab.PLacedApplicants();
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
+        public ActionResult JanuaryMonthApplieds(int? page)
+        {
+            var res = ab.JanuaryMonthApplieds();
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
 
-
+        public ActionResult TotalApplied(int? page)
+        {
+            var res = ab.TotalApplied();
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -97,9 +130,7 @@ namespace OnlineRecruitment.Controllers
 
             return View();
         }
-        public ActionResult Admin()
-        {
-            return View();
-        }
+     
+      
     }
 }

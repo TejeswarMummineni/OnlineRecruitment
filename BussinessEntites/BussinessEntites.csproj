@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminEntites.cs" />
     <Compile Include="CompanyPortalEntites.cs" />
     <Compile Include="JobApplicantEntites.cs" />
     <Compile Include="JobAppliedEntites.cs" />
