@@ -184,6 +184,10 @@
     <Content Include="Views\Home\PLacedApplicants.cshtml" />
     <Content Include="Views\Home\JanuaryMonthApplieds.cshtml" />
     <Content Include="Views\Home\TotalApplied.cshtml" />
+    <Content Include="Views\Home\NewRequirment.cshtml" />
+    <Content Include="Views\Home\PostApprove.cshtml" />
+    <Content Include="Views\Home\PostReject.cshtml" />
+    <Content Include="Views\Home\ApllicantDashBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

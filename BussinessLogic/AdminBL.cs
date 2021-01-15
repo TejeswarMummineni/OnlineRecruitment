@@ -35,5 +35,17 @@ namespace BussinessLogic
         {
             return ad.TotalApplied();
         }
+        public List<NewRequirmentEntites> NewRequirment()
+        {
+            return ad.NewRequirment();
+        }
+        public int PostApprove(NewRequirmentEntites ne)
+        {
+            return ad.PostApprove(ne);
+        }
+        public int PostReject(NewRequirmentEntites ne)
+        {
+            return ad.PostReject(ne);
+        }
     }
 }

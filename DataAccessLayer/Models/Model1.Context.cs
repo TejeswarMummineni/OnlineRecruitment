@@ -28,9 +28,10 @@ namespace DataAccessLayer.Models
         public virtual DbSet<CompanyPortal> CompanyPortals { get; set; }
         public virtual DbSet<JobApplicant> JobApplicants { get; set; }
         public virtual DbSet<JobApplied> JobApplieds { get; set; }
-        public virtual DbSet<JobPosting> JobPostings { get; set; }
         public virtual DbSet<Qualification> Qualifications { get; set; }
         public virtual DbSet<RecruitmentTeam> RecruitmentTeams { get; set; }
         public virtual DbSet<TestResult> TestResults { get; set; }
+        public virtual DbSet<JobPosting> JobPostings { get; set; }
+        public virtual DbSet<NewRequirment> NewRequirments { get; set; }
     }
 }

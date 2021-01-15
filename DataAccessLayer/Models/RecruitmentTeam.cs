@@ -14,6 +14,12 @@ namespace DataAccessLayer.Models
     
     public partial class RecruitmentTeam
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RecruitmentTeam()
+        {
+            this.NewRequirments = new HashSet<NewRequirment>();
+        }
+    
         public string EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string Email { get; set; }
@@ -21,5 +27,8 @@ namespace DataAccessLayer.Models
         public string Phone { get; set; }
         public System.DateTime Dob { get; set; }
         public byte WorkExperience { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NewRequirment> NewRequirments { get; set; }
     }
 }

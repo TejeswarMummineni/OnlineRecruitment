@@ -30,7 +30,7 @@ namespace DataAccessLayer.Models
         public bool Status { get; set; }
         public string JobName { get; set; }
         public string JobType { get; set; }
-        public bool CandidateReq { get; set; }
+        public Nullable<int> CandidateReq { get; set; }
     
         public virtual CompanyPortal CompanyPortal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

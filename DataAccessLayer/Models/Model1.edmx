@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineRecruitmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineRecruitmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CompanyPortal">
           <Key>
             <PropertyRef Name="CompanyId" />
@@ -54,7 +54,23 @@
           <Property Name="Status" Type="bit" Nullable="false" />
           <Property Name="JobName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="JobType" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="CandidateReq" Type="bit" Nullable="false" />
+          <Property Name="CandidateReq" Type="int" />
+        </EntityType>
+        <EntityType Name="NewRequirment">
+          <Key>
+            <PropertyRef Name="Requirmentid" />
+          </Key>
+          <Property Name="Requirmentid" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="EmployeeId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="CompanyId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="jobtype" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="candidatereq" Type="int" />
+          <Property Name="Location" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PostedDate" Type="date" Nullable="false" />
+          <Property Name="JobDesc" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LastDate" Type="date" Nullable="false" />
+          <Property Name="JobName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Qualification">
           <Key>
@@ -129,6 +145,30 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__NewRequir__Compa__5DCAEF64">
+          <End Role="CompanyPortal" Type="Self.CompanyPortal" Multiplicity="1" />
+          <End Role="NewRequirment" Type="Self.NewRequirment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyPortal">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="NewRequirment">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NewRequir__Emplo__5CD6CB2B">
+          <End Role="RecruitmentTeam" Type="Self.RecruitmentTeam" Multiplicity="1" />
+          <End Role="NewRequirment" Type="Self.NewRequirment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecruitmentTeam">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="NewRequirment">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Qualifica__Appli__3A81B327">
           <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
           <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
@@ -170,6 +210,7 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
           <EntitySet Name="JobApplicant" EntityType="Self.JobApplicant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobApplied" EntityType="Self.JobApplied" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobPosting" EntityType="Self.JobPosting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewRequirment" EntityType="Self.NewRequirment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecruitmentTeam" EntityType="Self.RecruitmentTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TestResult" EntityType="Self.TestResult" store:Type="Tables" store:Schema="dbo">
@@ -192,6 +233,14 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
             <End Role="CompanyPortal" EntitySet="CompanyPortal" />
             <End Role="JobPosting" EntitySet="JobPosting" />
           </AssociationSet>
+          <AssociationSet Name="FK__NewRequir__Compa__5DCAEF64" Association="Self.FK__NewRequir__Compa__5DCAEF64">
+            <End Role="CompanyPortal" EntitySet="CompanyPortal" />
+            <End Role="NewRequirment" EntitySet="NewRequirment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NewRequir__Emplo__5CD6CB2B" Association="Self.FK__NewRequir__Emplo__5CD6CB2B">
+            <End Role="RecruitmentTeam" EntitySet="RecruitmentTeam" />
+            <End Role="NewRequirment" EntitySet="NewRequirment" />
+          </AssociationSet>
           <AssociationSet Name="FK__Qualifica__Appli__3A81B327" Association="Self.FK__Qualifica__Appli__3A81B327">
             <End Role="JobApplicant" EntitySet="JobApplicant" />
             <End Role="Qualification" EntitySet="Qualification" />
@@ -205,8 +254,7 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
             <End Role="TestResult" EntitySet="TestResult" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineRecruitmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -221,7 +269,8 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
           <Property Name="CompanyDesc" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Logo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Location" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="JobPostings" Relationship="Self.FK__JobPostin__Compa__4222D4EF" FromRole="CompanyPortal" ToRole="JobPosting" />
+          <NavigationProperty Name="JobPostings" Relationship="OnlineRecruitmentModel.FK__JobPostin__Compa__4222D4EF" FromRole="CompanyPortal" ToRole="JobPosting" />
+          <NavigationProperty Name="NewRequirments" Relationship="OnlineRecruitmentModel.FK__NewRequir__Compa__5DCAEF64" FromRole="CompanyPortal" ToRole="NewRequirment" />
         </EntityType>
         <EntityType Name="JobApplicant">
           <Key>
@@ -250,25 +299,7 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
           <Property Name="JobId" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="JobApplicant" Relationship="Self.FK__JobApplie__Candi__44FF419A" FromRole="JobApplied" ToRole="JobApplicant" />
-          <NavigationProperty Name="JobPosting" Relationship="Self.FK__JobApplie__JobId__45F365D3" FromRole="JobApplied" ToRole="JobPosting" />
-        </EntityType>
-        <EntityType Name="JobPosting">
-          <Key>
-            <PropertyRef Name="JobId" />
-          </Key>
-          <Property Name="JobId" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="JobDescription" Type="String" MaxLength="254" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CompanyId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Location" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <Property Name="JobName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="JobType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CandidateReq" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CompanyPortal" Relationship="Self.FK__JobPostin__Compa__4222D4EF" FromRole="JobPosting" ToRole="CompanyPortal" />
-          <NavigationProperty Name="JobApplieds" Relationship="Self.FK__JobApplie__JobId__45F365D3" FromRole="JobPosting" ToRole="JobApplied" />
-          <NavigationProperty Name="TestResults" Relationship="Self.FK__TestResul__JobId__47DBAE45" FromRole="JobPosting" ToRole="TestResult" />
+          <NavigationProperty Name="JobPosting" Relationship="OnlineRecruitmentModel.FK__JobApplie__JobId__45F365D3" FromRole="JobApplied" ToRole="JobPosting" />
         </EntityType>
         <EntityType Name="Qualification">
           <Key>
@@ -293,6 +324,7 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Dob" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="WorkExperience" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="NewRequirments" Relationship="OnlineRecruitmentModel.FK__NewRequir__Emplo__5CD6CB2B" FromRole="RecruitmentTeam" ToRole="NewRequirment" />
         </EntityType>
         <EntityType Name="TestResult">
           <Key>
@@ -306,20 +338,8 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
           <Property Name="CandidateId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Marks" Type="Byte" Nullable="false" />
           <NavigationProperty Name="JobApplicant" Relationship="Self.FK__TestResul__Candi__48CFD27E" FromRole="TestResult" ToRole="JobApplicant" />
-          <NavigationProperty Name="JobPosting" Relationship="Self.FK__TestResul__JobId__47DBAE45" FromRole="TestResult" ToRole="JobPosting" />
+          <NavigationProperty Name="JobPosting" Relationship="OnlineRecruitmentModel.FK__TestResul__JobId__47DBAE45" FromRole="TestResult" ToRole="JobPosting" />
         </EntityType>
-        <Association Name="FK__JobPostin__Compa__4222D4EF">
-          <End Role="CompanyPortal" Type="Self.CompanyPortal" Multiplicity="1" />
-          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CompanyPortal">
-              <PropertyRef Name="CompanyId" />
-            </Principal>
-            <Dependent Role="JobPosting">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__JobApplie__Candi__44FF419A">
           <End Role="JobApplicant" Type="Self.JobApplicant" Multiplicity="1" />
           <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
@@ -356,42 +376,13 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__JobApplie__JobId__45F365D3">
-          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
-          <End Role="JobApplied" Type="Self.JobApplied" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobPosting">
-              <PropertyRef Name="JobId" />
-            </Principal>
-            <Dependent Role="JobApplied">
-              <PropertyRef Name="JobId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TestResul__JobId__47DBAE45">
-          <End Role="JobPosting" Type="Self.JobPosting" Multiplicity="1" />
-          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobPosting">
-              <PropertyRef Name="JobId" />
-            </Principal>
-            <Dependent Role="TestResult">
-              <PropertyRef Name="JobId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="OnlineRecruitmentEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CompanyPortals" EntityType="Self.CompanyPortal" />
           <EntitySet Name="JobApplicants" EntityType="Self.JobApplicant" />
           <EntitySet Name="JobApplieds" EntityType="Self.JobApplied" />
-          <EntitySet Name="JobPostings" EntityType="Self.JobPosting" />
           <EntitySet Name="Qualifications" EntityType="Self.Qualification" />
           <EntitySet Name="RecruitmentTeams" EntityType="Self.RecruitmentTeam" />
           <EntitySet Name="TestResults" EntityType="Self.TestResult" />
-          <AssociationSet Name="FK__JobPostin__Compa__4222D4EF" Association="Self.FK__JobPostin__Compa__4222D4EF">
-            <End Role="CompanyPortal" EntitySet="CompanyPortals" />
-            <End Role="JobPosting" EntitySet="JobPostings" />
-          </AssociationSet>
           <AssociationSet Name="FK__JobApplie__Candi__44FF419A" Association="Self.FK__JobApplie__Candi__44FF419A">
             <End Role="JobApplicant" EntitySet="JobApplicants" />
             <End Role="JobApplied" EntitySet="JobApplieds" />
@@ -404,16 +395,126 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
             <End Role="JobApplicant" EntitySet="JobApplicants" />
             <End Role="TestResult" EntitySet="TestResults" />
           </AssociationSet>
-          <AssociationSet Name="FK__JobApplie__JobId__45F365D3" Association="Self.FK__JobApplie__JobId__45F365D3">
+          <EntitySet Name="JobPostings" EntityType="OnlineRecruitmentModel.JobPosting" />
+          <AssociationSet Name="FK__JobPostin__Compa__4222D4EF" Association="OnlineRecruitmentModel.FK__JobPostin__Compa__4222D4EF">
+            <End Role="CompanyPortal" EntitySet="CompanyPortals" />
+            <End Role="JobPosting" EntitySet="JobPostings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__JobApplie__JobId__45F365D3" Association="OnlineRecruitmentModel.FK__JobApplie__JobId__45F365D3">
             <End Role="JobPosting" EntitySet="JobPostings" />
             <End Role="JobApplied" EntitySet="JobApplieds" />
           </AssociationSet>
-          <AssociationSet Name="FK__TestResul__JobId__47DBAE45" Association="Self.FK__TestResul__JobId__47DBAE45">
+          <AssociationSet Name="FK__TestResul__JobId__47DBAE45" Association="OnlineRecruitmentModel.FK__TestResul__JobId__47DBAE45">
             <End Role="JobPosting" EntitySet="JobPostings" />
             <End Role="TestResult" EntitySet="TestResults" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="NewRequirments" EntityType="OnlineRecruitmentModel.NewRequirment" />
+          <AssociationSet Name="FK__NewRequir__Compa__5DCAEF64" Association="OnlineRecruitmentModel.FK__NewRequir__Compa__5DCAEF64">
+            <End Role="CompanyPortal" EntitySet="CompanyPortals" />
+            <End Role="NewRequirment" EntitySet="NewRequirments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NewRequir__Emplo__5CD6CB2B" Association="OnlineRecruitmentModel.FK__NewRequir__Emplo__5CD6CB2B">
+            <End Role="RecruitmentTeam" EntitySet="RecruitmentTeams" />
+            <End Role="NewRequirment" EntitySet="NewRequirments" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="JobPosting">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="JobDescription" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="JobName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="JobType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateReq" Type="Int32" />
+          <NavigationProperty Name="CompanyPortal" Relationship="OnlineRecruitmentModel.FK__JobPostin__Compa__4222D4EF" FromRole="JobPosting" ToRole="CompanyPortal" />
+          <NavigationProperty Name="JobApplieds" Relationship="OnlineRecruitmentModel.FK__JobApplie__JobId__45F365D3" FromRole="JobPosting" ToRole="JobApplied" />
+          <NavigationProperty Name="TestResults" Relationship="OnlineRecruitmentModel.FK__TestResul__JobId__47DBAE45" FromRole="JobPosting" ToRole="TestResult" />
+        </EntityType>
+        <Association Name="FK__JobPostin__Compa__4222D4EF">
+          <End Type="OnlineRecruitmentModel.CompanyPortal" Role="CompanyPortal" Multiplicity="1" />
+          <End Type="OnlineRecruitmentModel.JobPosting" Role="JobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyPortal">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="JobPosting">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__JobApplie__JobId__45F365D3">
+          <End Type="OnlineRecruitmentModel.JobPosting" Role="JobPosting" Multiplicity="1" />
+          <End Type="OnlineRecruitmentModel.JobApplied" Role="JobApplied" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="JobApplied">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TestResul__JobId__47DBAE45">
+          <End Type="OnlineRecruitmentModel.JobPosting" Role="JobPosting" Multiplicity="1" />
+          <End Type="OnlineRecruitmentModel.TestResult" Role="TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobPosting">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NewRequirment">
+          <Key>
+            <PropertyRef Name="Requirmentid" />
+          </Key>
+          <Property Name="Requirmentid" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeId" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyId" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="jobtype" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="candidatereq" Type="Int32" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PostedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="JobDesc" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="JobName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CompanyPortal" Relationship="OnlineRecruitmentModel.FK__NewRequir__Compa__5DCAEF64" FromRole="NewRequirment" ToRole="CompanyPortal" />
+          <NavigationProperty Name="RecruitmentTeam" Relationship="OnlineRecruitmentModel.FK__NewRequir__Emplo__5CD6CB2B" FromRole="NewRequirment" ToRole="RecruitmentTeam" />
+        </EntityType>
+        <Association Name="FK__NewRequir__Compa__5DCAEF64">
+          <End Type="OnlineRecruitmentModel.CompanyPortal" Role="CompanyPortal" Multiplicity="1" />
+          <End Type="OnlineRecruitmentModel.NewRequirment" Role="NewRequirment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyPortal">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="NewRequirment">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NewRequir__Emplo__5CD6CB2B">
+          <End Type="OnlineRecruitmentModel.RecruitmentTeam" Role="RecruitmentTeam" Multiplicity="1" />
+          <End Type="OnlineRecruitmentModel.NewRequirment" Role="NewRequirment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecruitmentTeam">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="NewRequirment">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -458,22 +559,6 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="JobPostings">
-            <EntityTypeMapping TypeName="OnlineRecruitmentModel.JobPosting">
-              <MappingFragment StoreEntitySet="JobPosting">
-                <ScalarProperty Name="JobId" ColumnName="JobId" />
-                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
-                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="JobName" ColumnName="JobName" />
-                <ScalarProperty Name="JobType" ColumnName="JobType" />
-                <ScalarProperty Name="CandidateReq" ColumnName="CandidateReq" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Qualifications">
             <EntityTypeMapping TypeName="OnlineRecruitmentModel.Qualification">
               <MappingFragment StoreEntitySet="Qualification">
@@ -506,6 +591,39 @@ warning 6002: The table/view 'OnlineRecruitment.dbo.TestResult' does not have a 
                 <ScalarProperty Name="JobId" ColumnName="JobId" />
                 <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
                 <ScalarProperty Name="Marks" ColumnName="Marks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobPostings">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.JobPosting">
+              <MappingFragment StoreEntitySet="JobPosting">
+                <ScalarProperty Name="CandidateReq" ColumnName="CandidateReq" />
+                <ScalarProperty Name="JobType" ColumnName="JobType" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewRequirments">
+            <EntityTypeMapping TypeName="OnlineRecruitmentModel.NewRequirment">
+              <MappingFragment StoreEntitySet="NewRequirment">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="LastDate" ColumnName="LastDate" />
+                <ScalarProperty Name="JobDesc" ColumnName="JobDesc" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="candidatereq" ColumnName="candidatereq" />
+                <ScalarProperty Name="jobtype" ColumnName="jobtype" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Requirmentid" ColumnName="Requirmentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

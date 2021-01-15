@@ -22,12 +22,12 @@
 @using (Html.BeginForm("RegistredCompines", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
 {
 
-<a href="RegistredCompines">
-    <div class="col-sm-4" style="background-color:yellow">
-        <h2><label>Total No Of Registred Compines</label></h2>
-        @Html.DisplayFor(x => x.RegisterCompines)
-    </div>
-</a>
+    <a href="RegistredCompines">
+        <div class="col-sm-4" style="background-color:yellow">
+            <h2><label>Total No Of Registred Compines</label></h2>
+            @Html.DisplayFor(x => x.RegisterCompines)
+        </div>
+    </a>
 
 }
 @using (Html.BeginForm("PLacedApplicants", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
@@ -55,16 +55,27 @@
 @using (Html.BeginForm("TotalApplied", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
 {
 
-<a href="TotalApplied">
-    <div class="col-sm-4" style="background-color:yellow">
-        <h2><label>Total No Of Users Applied</label></h2>
-        @Html.DisplayFor(x => x.usersapplied)
-    </div>
-</a>
+    <a href="TotalApplied">
+        <div class="col-sm-4" style="background-color:yellow">
+            <h2><label>Total No Of Users Applied</label></h2>
+            @Html.DisplayFor(x => x.usersapplied)
+        </div>
+    </a>
+
+}
+@using (Html.BeginForm("NewRequirment", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <a href="NewRequirment">
+        <div class="col-sm-4" style="background-color:yellow">
+            <h2><label>Total No Of New jobs</label></h2>
+            @Html.DisplayFor(x => x.newrequirment)
+        </div>
+    </a>
 
 }
 
-   
-    
-    
-   
+
+
+
+

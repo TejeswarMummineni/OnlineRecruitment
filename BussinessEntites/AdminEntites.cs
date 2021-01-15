@@ -13,7 +13,6 @@ namespace BussinessEntites
         public int gotplaced { get; set; }
         public int reqmonth { get; set; }
         public int usersapplied { get; set; }
-
-
+        public int newrequirment { get; set; }
     }
 }

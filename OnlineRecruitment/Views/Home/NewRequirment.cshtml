@@ -1,0 +1,45 @@
+﻿@model IPagedList<BussinessEntites.NewRequirmentEntites>
+@{
+    ViewBag.Title = "NewRequirment";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<h2>NewRequirment</h2>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h1> @Html.DisplayFor(model => item.jobtype)</h1>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CompanyId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.JobDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.candidatereq)
+            </td>
+        </tr>
+        using (Html.BeginForm("PostApprove", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            <tr><td> <a href="PostApprove?Requirmentid=@item.Requirmentid">Approve</a></td></tr>
+
+        }
+        using (Html.BeginForm("PostReject", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+        {
+            <tr><td> <a href="PostReject?Requirmentid=@item.Requirmentid">Reject</a></td></tr>
+        }
+
+    }
+</table>
+<div>
+
+    @Html.PagedListPager(Model, i => Url.Action("NewRequirment", "Home"))
+
+</div>

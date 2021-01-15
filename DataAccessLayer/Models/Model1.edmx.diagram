@@ -8,16 +8,19 @@
         <EntityTypeShape EntityType="OnlineRecruitmentModel.CompanyPortal" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineRecruitmentModel.JobApplicant" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineRecruitmentModel.JobApplied" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineRecruitmentModel.JobPosting" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineRecruitmentModel.Qualification" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineRecruitmentModel.RecruitmentTeam" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineRecruitmentModel.TestResult" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="OnlineRecruitmentModel.FK__JobPostin__Compa__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineRecruitmentModel.FK__JobApplie__Candi__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineRecruitmentModel.FK__Qualifica__Appli__3A81B327" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineRecruitmentModel.FK__TestResul__Candi__48CFD27E" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineRecruitmentModel.FK__JobApplie__JobId__45F365D3" ManuallyRouted="false" />
-        <AssociationConnector Association="OnlineRecruitmentModel.FK__TestResul__JobId__47DBAE45" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlineRecruitmentModel.JobPosting" Width="1.5" PointX="3" PointY="3.625" />
+        <AssociationConnector Association="OnlineRecruitmentModel.FK__JobPostin__Compa__4222D4EF" />
+        <AssociationConnector Association="OnlineRecruitmentModel.FK__JobApplie__JobId__45F365D3" />
+        <AssociationConnector Association="OnlineRecruitmentModel.FK__TestResul__JobId__47DBAE45" />
+        <EntityTypeShape EntityType="OnlineRecruitmentModel.NewRequirment" Width="1.5" PointX="10" PointY="2.375" />
+        <AssociationConnector Association="OnlineRecruitmentModel.FK__NewRequir__Compa__5DCAEF64" />
+        <AssociationConnector Association="OnlineRecruitmentModel.FK__NewRequir__Emplo__5CD6CB2B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

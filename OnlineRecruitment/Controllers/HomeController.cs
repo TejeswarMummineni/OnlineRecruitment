@@ -117,7 +117,48 @@ namespace OnlineRecruitment.Controllers
             var res = ab.TotalApplied();
             return View(res.ToList().ToPagedList(page ?? 1, 5));
         }
-        public ActionResult About()
+        public ActionResult NewRequirment(int? page)
+        {
+            var res = ab.NewRequirment();
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
+        public ActionResult PostApprove(NewRequirmentEntites ne)
+        {
+
+            var res = ab.PostApprove(ne);
+            if (res > 0)
+            {
+                ViewData["a"] = "Application Approved Sucessfully";
+                Response.Redirect("NewRequirment");
+
+            }
+            else
+            {
+                ViewData["a"] = "Invalid Details please Check";
+            }
+            return View();
+        }
+        public ActionResult PostReject(NewRequirmentEntites ne)
+        {
+            var res = ab.PostReject(ne);
+            if (res > 0)
+            {
+                ViewData["a"] = "Application Rejected Sucessfully";
+                Response.Redirect("NewRequirment");
+
+            }
+            else
+            {
+                ViewData["a"] = "Invalid Details please Check";
+            }
+            return View();
+        }
+
+        public ActionResult ApllicantDashBoard(JobApplicantEntites ja)
+        {
+            return View();
+        }
+            public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 

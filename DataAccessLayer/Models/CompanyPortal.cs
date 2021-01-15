@@ -18,6 +18,7 @@ namespace DataAccessLayer.Models
         public CompanyPortal()
         {
             this.JobPostings = new HashSet<JobPosting>();
+            this.NewRequirments = new HashSet<NewRequirment>();
         }
     
         public string CompanyId { get; set; }
@@ -30,5 +31,7 @@ namespace DataAccessLayer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobPosting> JobPostings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NewRequirment> NewRequirments { get; set; }
     }
 }
