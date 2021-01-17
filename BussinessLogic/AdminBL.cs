@@ -47,5 +47,9 @@ namespace BussinessLogic
         {
             return ad.PostReject(ne);
         }
+         public JobApplicantEntites Gamil(JobApplicantEntites ge)
+        {
+            return ad.Gamil(ge);
+        }
     }
 }

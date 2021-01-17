@@ -18,6 +18,7 @@ namespace DataAccessLayer.Models
         public JobPosting()
         {
             this.JobApplieds = new HashSet<JobApplied>();
+            this.SelectedCandidates = new HashSet<SelectedCandidate>();
             this.TestResults = new HashSet<TestResult>();
         }
     
@@ -31,10 +32,13 @@ namespace DataAccessLayer.Models
         public string JobName { get; set; }
         public string JobType { get; set; }
         public Nullable<int> CandidateReq { get; set; }
+        public Nullable<int> Salary { get; set; }
     
         public virtual CompanyPortal CompanyPortal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobApplied> JobApplieds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SelectedCandidate> SelectedCandidates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TestResult> TestResults { get; set; }
     }

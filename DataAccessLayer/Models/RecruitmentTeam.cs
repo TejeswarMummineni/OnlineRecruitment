@@ -18,6 +18,7 @@ namespace DataAccessLayer.Models
         public RecruitmentTeam()
         {
             this.NewRequirments = new HashSet<NewRequirment>();
+            this.Rejecteds = new HashSet<Rejected>();
         }
     
         public string EmployeeId { get; set; }
@@ -30,5 +31,7 @@ namespace DataAccessLayer.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewRequirment> NewRequirments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rejected> Rejecteds { get; set; }
     }
 }

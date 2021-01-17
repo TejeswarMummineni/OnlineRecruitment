@@ -1,0 +1,45 @@
+﻿@model IPagedList<BussinessEntites.JobPostingEntites>
+@{
+    ViewBag.Title = "Appliedjobs";
+    Layout = "~/Views/Shared/Applicant.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<h2>Appliedjobs</h2>
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.JobId)
+            </td>
+            <td>
+                <h1> @Html.DisplayFor(model => item.JobName)</h1>
+            </td>
+            <td>
+
+                <h3> @Html.DisplayFor(model => item.JobType)</h3>
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.JobDescription)
+            </td>
+        </tr>
+        using (Html.BeginForm("CandidateClick", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+        {
+
+            <tr><td> <a href="CandidateClick?jobid=@item.JobId">Apply</a></td></tr>
+
+        }
+    }
+</table>
+<div>
+
+    @Html.PagedListPager(Model, Page => Url.Action("Appliedjobs", "Home", new { Page, Search = Request.QueryString["Search"] }))
+    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+
+</div>

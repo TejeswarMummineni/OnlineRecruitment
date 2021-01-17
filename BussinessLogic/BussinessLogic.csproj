@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addapp.cs" />
     <Compile Include="AdminBL.cs" />
+    <Compile Include="ApplicantBL.cs" />
+    <Compile Include="AptitudeBL.cs" />
     <Compile Include="JobAppliedBL.cs" />
     <Compile Include="LoginBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +59,9 @@
       <Project>{d63c1c13-d506-4f26-ba35-4636704cc947}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

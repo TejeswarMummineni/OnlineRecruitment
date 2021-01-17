@@ -1,0 +1,36 @@
+﻿@model BussinessEntites.JobApplicantEntites
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/Applicant.cshtml";
+}
+
+<h2>profile</h2>
+
+<table>
+           <tr>
+            <td>
+             <h1> @Html.DisplayFor(model => model.CandidateId)</h1>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Dob)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.UniversityName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Location)
+            </td>
+        </tr>
+    </table>

@@ -15,5 +15,18 @@ namespace BussinessLogic
         {
            return wd.Welcomepage(Search);
         }
+        public List<JobPostingEntites> PreviousPost(string Search)
+        {
+            return wd.PreviousPost(Search);
+        }
+        public List<TestResultEntites> SelectedCandidates()
+        {
+            return wd.SelectedCandidates();
+        }
+        public int companyportal(CompanyPortalEntites cp)
+        {
+            return wd.companyportal(cp);
+        }
     }
+
 }

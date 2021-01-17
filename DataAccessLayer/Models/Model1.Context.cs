@@ -12,6 +12,8 @@ namespace DataAccessLayer.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class OnlineRecruitmentEntities : DbContext
     {
@@ -28,10 +30,18 @@ namespace DataAccessLayer.Models
         public virtual DbSet<CompanyPortal> CompanyPortals { get; set; }
         public virtual DbSet<JobApplicant> JobApplicants { get; set; }
         public virtual DbSet<JobApplied> JobApplieds { get; set; }
-        public virtual DbSet<Qualification> Qualifications { get; set; }
-        public virtual DbSet<RecruitmentTeam> RecruitmentTeams { get; set; }
-        public virtual DbSet<TestResult> TestResults { get; set; }
         public virtual DbSet<JobPosting> JobPostings { get; set; }
         public virtual DbSet<NewRequirment> NewRequirments { get; set; }
+        public virtual DbSet<Qualification> Qualifications { get; set; }
+        public virtual DbSet<RecruitmentTeam> RecruitmentTeams { get; set; }
+        public virtual DbSet<Rejected> Rejecteds { get; set; }
+        public virtual DbSet<SelectedCandidate> SelectedCandidates { get; set; }
+        public virtual DbSet<test> tests { get; set; }
+        public virtual DbSet<TestResult> TestResults { get; set; }
+    
+        public virtual ObjectResult<Aptitude_Result> Aptitude()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Aptitude_Result>("Aptitude");
+        }
     }
 }

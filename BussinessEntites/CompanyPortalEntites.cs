@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace BussinessEntites
         public string CompanyName { get; set; }
         public string CompanyDesc { get; set; }
         public string Logo { get; set; }
+        public IFormFile ImageFile { get; set; }
         public string Location { get; set; }
     }
 }

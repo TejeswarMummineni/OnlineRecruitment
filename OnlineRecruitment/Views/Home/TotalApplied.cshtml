@@ -5,41 +5,50 @@
 @using PagedList.Mvc;
 @using PagedList;
 <h2>TotalApplied</h2>
-<table>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <h1> @Html.DisplayFor(model => item.CandidateId)</h1>
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Dob)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.UniversityName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Location)
-            </td>
-        </tr>
+<form method="get">
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <h1> @Html.DisplayFor(model => item.CandidateId)</h1>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.UniversityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Location)
+                </td>
+            </tr>
 
-    }
-</table>
+            <tr>
+                <td> <a href="Gmail?CandidateId=@item.CandidateId">Approve</a></td>
+
+
+                <td> <a href="PostReject?Requirmentid=@item.CandidateId">Reject</a></td>
+            </tr>
+
+
+
+        }
+    </table>
+</form>
 <div>
-
-    @Html.PagedListPager(Model, i => Url.Action("TotalApplied", "Home"))
-
+    @Html.PagedListPager(Model, page => Url.Action("TotalApplied","Home", new { page }))
 </div>
 

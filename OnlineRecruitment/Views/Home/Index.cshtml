@@ -1,6 +1,7 @@
 ﻿@model IPagedList<BussinessEntites.JobPostingEntites>
 @{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/Applicant.cshtml";
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -41,6 +42,7 @@
 </table>
 <div>
 
-    @Html.PagedListPager(Model, i => Url.Action("Index", "Home", new { i, Search = Request.QueryString["Search"] }))
+    @Html.PagedListPager(Model, Page => Url.Action("Index","Home",new {Page, Search = Request.QueryString["Search"] }))
+    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
 
 </div>

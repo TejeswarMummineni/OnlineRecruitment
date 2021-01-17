@@ -1,0 +1,106 @@
+﻿@model IEnumerable<BussinessEntites.AptitudeEntities>
+@{
+    ViewBag.Title = "AptitudeTest";
+}
+
+<h2>AptitudeTest</h2>
+
+<center>
+
+
+    <h2> Aptitude Test</h2>
+    <hr />
+    <table>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>@item.Qid ) @item.Question ? </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <input type="radio" id="Option1" name="@item.Qid" class="radoption" value="@item.Option1" />@item.Option1 <br />
+                    <input type="radio" id="Option2" name="@item.Qid" class="radoption" value="@item.Option2" />@item.Option2 <br />
+                    <input type="radio" id="Option3" name="@item.Qid" class="radoption" value="@item.Option3" />@item.Option3  <br />
+                    <input type="radio" id="Option4" name="@item.Qid" class="radoption" value="@item.Option4" />@item.Option4  <br />
+                    <input type="hidden" id="@item.Qid" value="@item.CorrectANS" name="@item.Qid" class="radoption" />
+
+
+                </td>
+
+
+            </tr>
+        }
+
+
+    </table>
+
+    <button id="but1" type="submit" onclick="displayresult();">submit</button>
+    <br />
+    @*<label id="selectedradio"></label>*@
+</center>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#but1").click(function () {
+
+            $(".radoption").show();
+            $(".radoption").attr("disabled", true
+            )
+
+        });
+
+    });
+
+
+    function displayresult()
+    {
+        var count = 0;
+
+
+       // document.getElementById("selectedradio").innerHTML = " ";
+        var res = document.getElementsByTagName("input");
+        for (i = 0; i < res.length; i++)
+        {
+
+            if (res[i].type == "radio")
+            {
+
+                if (res[i].checked)
+                {
+                    //document.getElementById("selectedradio").innerHTML
+
+                    //    += "Q ) " + res[i].name + "your selected answer is : " + res[i].value + "<br/>";
+                    var store = res[i].name;
+                   // var store1 = res[i].value;
+
+                    //alert(store);
+                    //alert(store1);
+
+                   var temp = document.getElementById(store).value;
+                    //var temp1 = document.getElementById('CorrectANS').innerHTML;
+                    //alert(temp);
+                    if (res[i].value == temp)
+                    {
+                        count = count + 1;
+                    //  alert(count);
+                    }
+                }
+            }
+        }
+
+       // alert(count);
+
+        $.post("@Url.Action("AptitudeTest", "Home")", { 'marks': count}, function () {
+            alert("Test submitted successfully");
+        });
+    }
+
+
+</script>

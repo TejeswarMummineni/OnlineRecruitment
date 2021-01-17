@@ -3,16 +3,14 @@
     ViewBag.Title = "Admin";
 }
 <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/Admin.css" rel="stylesheet" />
 <h2>Admin</h2>
-
-
-
 @using (Html.BeginForm("RegisterUser", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
 {
 
     <a href="RegisterUser">
-        <div class="col-sm-4" style="background-color:yellow">
-            <h2><label>Total No Of Registred Users</label></h2>
+        <div class="col-sm-4">
+            <h2><label>REGISTERED-USERS</label></h2>
             @Html.DisplayFor(x => x.RegisterUsers)
         </div>
     </a>
@@ -23,8 +21,8 @@
 {
 
     <a href="RegistredCompines">
-        <div class="col-sm-4" style="background-color:yellow">
-            <h2><label>Total No Of Registred Compines</label></h2>
+        <div class="col-sm-4">
+            <h2><label>REGISTERED-COMPINES</label></h2>
             @Html.DisplayFor(x => x.RegisterCompines)
         </div>
     </a>
@@ -34,8 +32,8 @@
 {
 
     <a href="PLacedApplicants">
-        <div class="col-sm-4" style="background-color:yellow">
-            <h2><label>Total No Of Users Got Placed</label></h2>
+        <div class="col-sm-4">
+            <h2><label>PLACED-APPLICANTS</label></h2>
             @Html.DisplayFor(x => x.gotplaced)
         </div>
     </a>
@@ -45,8 +43,8 @@
 {
 
     <a href="JanuaryMonthApplieds">
-        <div class="col-sm-4" style="background-color:yellow">
-            <h2><label>Total No Of Users Applied In Month January</label></h2>
+        <div class="col-sm-4">
+            <h2><label>PLACED IN THE MONTH JANUARY</label></h2>
             @Html.DisplayFor(x => x.reqmonth)
         </div>
     </a>
@@ -56,8 +54,8 @@
 {
 
     <a href="TotalApplied">
-        <div class="col-sm-4" style="background-color:yellow">
-            <h2><label>Total No Of Users Applied</label></h2>
+        <div class="col-sm-4">
+            <h2><label>APPLIED-USERS</label></h2>
             @Html.DisplayFor(x => x.usersapplied)
         </div>
     </a>
@@ -67,8 +65,8 @@
 {
 
     <a href="NewRequirment">
-        <div class="col-sm-4" style="background-color:yellow">
-            <h2><label>Total No Of New jobs</label></h2>
+        <div class="col-sm-4">
+            <h2><label>NEW JOBS-REQUIRMENT</label></h2>
             @Html.DisplayFor(x => x.newrequirment)
         </div>
     </a>

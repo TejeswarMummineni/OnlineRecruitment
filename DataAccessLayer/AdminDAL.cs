@@ -246,5 +246,24 @@ namespace DataAccessLayer
                 return 0;
             }
         }
+        public JobApplicantEntites Gamil(JobApplicantEntites ge)
+        {
+            var res = db.JobApplicants.Where(x => x.CandidateId == ge.CandidateId);
+            if (res.Count() > 0)
+            {
+                foreach (var item in res)
+                {
+                    ge.Email = item.Email;
+                }
+                var change = db.JobApplieds.Where(x => x.CandidateId == ge.CandidateId);
+                foreach (var item in change)
+                {
+                    item.Status = true;
+                }
+                db.SaveChanges();
+                return ge;
+            }
+            return ge;
+        }
     }
 }

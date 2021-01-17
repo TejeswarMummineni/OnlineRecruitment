@@ -18,5 +18,7 @@ namespace BussinessEntites
         public string UniversityName { get; set; }
         public string Location { get; set; }
         public string JobType { get; set; }
+        public string resume { get; set; }
+        public int jobsApplied { get; set; }
     }
 }

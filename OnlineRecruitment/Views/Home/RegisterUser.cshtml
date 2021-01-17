@@ -39,8 +39,7 @@
     }
 </table>
 <div>
-
-    @Html.PagedListPager(Model, i => Url.Action("RegisterUser", "Home", new { i, Search = Request.QueryString["Search"] }))
+    @Html.PagedListPager(Model, page => Url.Action("RegisterUser", new { page }))
 
 </div>
 

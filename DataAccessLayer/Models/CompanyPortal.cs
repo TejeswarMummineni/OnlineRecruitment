@@ -19,6 +19,7 @@ namespace DataAccessLayer.Models
         {
             this.JobPostings = new HashSet<JobPosting>();
             this.NewRequirments = new HashSet<NewRequirment>();
+            this.Rejecteds = new HashSet<Rejected>();
         }
     
         public string CompanyId { get; set; }
@@ -33,5 +34,7 @@ namespace DataAccessLayer.Models
         public virtual ICollection<JobPosting> JobPostings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NewRequirment> NewRequirments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rejected> Rejecteds { get; set; }
     }
 }

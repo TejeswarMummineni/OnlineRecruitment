@@ -14,6 +14,12 @@ namespace DataAccessLayer.Models
     
     public partial class TestResult
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TestResult()
+        {
+            this.SelectedCandidates = new HashSet<SelectedCandidate>();
+        }
+    
         public int TestId { get; set; }
         public string JobId { get; set; }
         public string CandidateId { get; set; }
@@ -21,5 +27,7 @@ namespace DataAccessLayer.Models
     
         public virtual JobApplicant JobApplicant { get; set; }
         public virtual JobPosting JobPosting { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SelectedCandidate> SelectedCandidates { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace DataAccessLayer.Models
         public System.DateTime LastDate { get; set; }
         public string JobName { get; set; }
         public bool Status { get; set; }
+        public Nullable<int> Salary { get; set; }
     
         public virtual CompanyPortal CompanyPortal { get; set; }
         public virtual RecruitmentTeam RecruitmentTeam { get; set; }

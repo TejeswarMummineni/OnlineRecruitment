@@ -7,13 +7,21 @@ using PagedList.Mvc;
 using PagedList;
 using BussinessEntites;
 using BussinessLogic;
-
+using System.Net;
+using System.Net.Mail;
+using MimeKit;
+using System.IO;
 
 namespace OnlineRecruitment.Controllers
 {
     public class HomeController : Controller
     {
+        string Email;
+        AptitudeBL ba = new AptitudeBL();
         AdminBL ab = new AdminBL();
+        ApplicantBL ap = new ApplicantBL();
+        WelcomeBL wb = new WelcomeBL();
+   
         public ActionResult Login()
         {
             return View();
@@ -29,25 +37,23 @@ namespace OnlineRecruitment.Controllers
                 Session["user"] = log.Email;
                
                 // Session["master"] = "EmployeeView";
-                // return View("Login", "EmployeeView");
-                return RedirectToAction("Cantact");
+               // return View("Login", "EmployeeView");
+                return RedirectToAction("ApllicantDashBoard");
 
             }
             else if (res == 2)
             {
                 Session["user"] = log.Email;
-                TempData["a"] = log.Email;
-                TempData.Keep();
                 // Session["master"] = "CandidateView";
-                //  return View("Login", "CandidateView");
-                return RedirectToAction("Index");
+                  return View("Login", "Applicant");
+               // return RedirectToAction("Index");
             }
             else if (res == 3)
             {
                 Session["user"] = log.Email;
                 //  Session["master"] = "CompanyView";
-                // return View("Login", "CompanyView");
-                return RedirectToAction("About");
+                 return View("Login", "company");
+               // return RedirectToAction("About");
             }
             else
             {
@@ -57,20 +63,17 @@ namespace OnlineRecruitment.Controllers
             }
 
         }
-        public ActionResult Index(string Search, int? page)
+      
+            public ActionResult Index(string Search, int? page)
         {
-            TempData.Keep();
-            WelcomeBL wb = new WelcomeBL();
+      
             var res = wb.Welcomepage(Search);
-            return View(res.ToList().ToPagedList(page ?? 1, 3));
+            return View(res.ToList().ToPagedList(page ?? 1, 1));
             
-        }
-
-            
+        }      
         public ActionResult CandidateClick(JobAppliedEntites ja,string Email)
         {
-            Email=TempData["a"].ToString();
-            TempData.Keep();
+            Email = Session["user"].ToString();
             JobAppliedBL jd = new JobAppliedBL();
             var res=jd.CandidateClick(ja, Email);
             if (res > 0)
@@ -154,11 +157,191 @@ namespace OnlineRecruitment.Controllers
             return View();
         }
 
-        public ActionResult ApllicantDashBoard(JobApplicantEntites ja)
+       
+        public ActionResult Appliedjobs(JobApplicantEntites je, int? page)
+        {
+            je.Email = Session["user"].ToString();
+            var res=ap.Appliedjobs(je);
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
+        }
+        public ActionResult profile(JobApplicantEntites je)
+        {
+            je.Email = Session["user"].ToString();
+            return View();
+        }
+        
+            public ActionResult Gmail(JobApplicantEntites jp)
+        {
+
+            ab.Gamil(jp);
+            MailMessage mm = new MailMessage();
+            MailAddress ma = new MailAddress("tejamummineni25@gmail.com", jp.Email);
+            mm.From = ma;
+            mm.To.Add((MailAddress)MailboxAddress.Parse(jp.Email));
+            mm.Subject = "you are Eligible for Job";
+            mm.Body = "Please Take Test https://localhost:44346/Home/AptitudeTest";
+            mm.IsBodyHtml = false;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            NetworkCredential nc = new NetworkCredential("tejamummineni25@gmail.com", "Teja5467");
+            smtp.UseDefaultCredentials = true;
+            smtp.Credentials = nc;
+            smtp.Send(mm);
+            ViewBag.Message = "Mail Has Been Sucessfully Sent";
+            return View();
+        }
+        public ActionResult AptitudeTest()
+        {
+            
+            var a = ba.storedproc();
+
+            return View(a);
+
+            // return View(db.Aptitude());
+            // return RedirectToAction("Index");
+
+        }
+        [HttpPost]
+        public ActionResult AptitudeTest(string marks)
+        {
+            var b = ba.storedproc();
+            AptitudeBL wb = new AptitudeBL();
+            Email = Session["user"].ToString();
+            // var user = Session["user"].ToString();
+            //  var user="linga@gmail.com";
+            //    var res = wb.saveresult(Int32.Parse(marks), Email);
+            var res = ba.saveresult(Int32.Parse(marks), Email);
+            return View(b);
+
+        }
+        
+        public ActionResult PreviousPost()
+        {
+            if (Session["user"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
+        public ActionResult SelectedCandidates(int? page)
+        {
+            if (Session["user"] != null)
+            {
+                var res = wb.SelectedCandidates();
+                return View(res.ToList().ToPagedList(page ?? 1, 2));
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+        public ActionResult company()
         {
             return View();
         }
-            public ActionResult About()
+        [HttpPost]
+        public ActionResult company(CompanyPortalEntites cp, HttpPostedFileBase Logo)
+
+        {
+           // if (ModelState.IsValid)
+           // {
+                string path = Server.MapPath("~/Logo");
+
+                string FileName = Path.GetFileName(Logo.FileName);
+                string fullPath = Path.Combine(path, FileName);
+
+                try
+                {
+                    Logo.SaveAs(fullPath);
+                    cp.Logo = fullPath;
+
+                }
+
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "error!please try again";
+                }
+
+                int res = wb.companyportal(cp);
+                if (res > 0)
+                {
+                    ViewData["status"] = "Thanks for Registered with us..!!!";
+                }
+                else
+                {
+                    ViewData["status"] = "Something went wrong..!!";
+                }
+                return View();
+           // }
+            //else
+            //{
+                //return View();
+            //}
+        }
+        public ActionResult openacc()
+        {
+            return View();
+        }
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public ActionResult openacc(JobApplicantEntites ap, HttpPostedFileBase resume)
+        {
+            addapp wd = new addapp();
+            if (!(resume.ContentType == "application/pdf"))
+            {
+                ModelState.AddModelError("customerror", "only .pdf file allowed");
+                return View();
+            }
+
+            if (ModelState.IsValid)
+            {
+                string path = Server.MapPath("~/resume");
+
+                string FileName = Path.GetFileName(resume.FileName);
+                string fullPath = Path.Combine(path, FileName);
+                //path = path + DateTime.Now.ToString("yymmssfff") + FileName;
+                try
+                {
+                    // string FileName = Path.GetFileName(resume.FileName);
+                    //string FileName = Guid.NewGuid() + Path.GetExtension(resume.FileName);
+
+
+                    resume.SaveAs(fullPath);
+                    ap.resume = FileName;
+
+                }
+
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "error!please try again";
+                }
+
+
+                int res = wd.addapplicant(ap);
+
+                if (res > 0)
+                {
+                    ViewData["status"] = "Thanks for Registered with us..!!!";
+                }
+                else
+                {
+                    ViewData["status"] = "Something went wrong..!!";
+                }
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
@@ -171,7 +354,11 @@ namespace OnlineRecruitment.Controllers
 
             return View();
         }
-     
-      
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            return RedirectToAction("Login");
+        }
+
     }
 }
