@@ -47,24 +47,6 @@ namespace DataAccessLayer
             }
             return job;
         }
-
-
-
-        public List<TestResultEntites> SelectedCandidates()
-        {
-            var mks = db.TestResults.Where(x => x.Marks > 5);
-            List<TestResultEntites> li = new List<TestResultEntites>();
-            foreach (var item in mks)
-            {
-                li.Add(new TestResultEntites()
-                {
-                    JobId = item.JobId,
-                    TestId = item.TestId,
-                    CandidateId = item.CandidateId
-                });
-            }
-            return li;
-        }
         public int companyportal(CompanyPortalEntites cp)
         {
 

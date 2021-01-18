@@ -756,6 +756,7 @@
             <End Role="SelectedCandidates" EntitySet="SelectedCandidates" />
           </AssociationSet>
           <FunctionImport Name="Aptitude" ReturnType="Collection(OnlineRecruitmentModel.Aptitude_Result)" />
+          <FunctionImport Name="Fun_Quiz1" />
         </EntityContainer>
         <ComplexType Name="Aptitude_Result">
           <Property Type="Int32" Name="Qid" Nullable="false" />
@@ -935,6 +936,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Fun_Quiz1" FunctionName="OnlineRecruitmentModel.Store.Aptitude" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -184,6 +184,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\admin.jpg" />
     <Content Include="images\user clip.png" />
+    <Content Include="images\p-logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -228,9 +229,13 @@
     <Content Include="Views\Home\company.cshtml" />
     <Content Include="Views\Home\openacc.cshtml" />
     <Content Include="Views\Shared\Applicant.cshtml" />
-    <Content Include="Views\Shared\company.cshtml" />
+    <Content Include="Views\Shared\CompanyView.cshtml" />
     <Content Include="Views\Home\Appliedjobs.cshtml" />
     <Content Include="Views\Home\profile.cshtml" />
+    <Content Include="Views\Home\Newreq.cshtml" />
+    <Content Include="Views\Home\SelectedCandidates.cshtml" />
+    <Content Include="Views\Home\Rejectedpost.cshtml" />
+    <Content Include="Views\Shared\AdminView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

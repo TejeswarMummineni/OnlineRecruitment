@@ -43,5 +43,10 @@ namespace DataAccessLayer.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Aptitude_Result>("Aptitude");
         }
+    
+        public virtual int Fun_Quiz1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Fun_Quiz1");
+        }
     }
 }

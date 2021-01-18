@@ -1,0 +1,47 @@
+﻿@model IPagedList<BussinessEntites.JobApplicantEntites>
+@{
+    ViewBag.Title = "SelectedCandidates";
+    Layout = "~/Views/Shared/CompanyView.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>SelectedCandidates</h2>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <h1> @Html.DisplayFor(model => item.CandidateId)</h1>
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Dob)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UniversityName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+        </tr>
+
+    }
+</table>
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("SelectedCandidates", new { page }))
+
+</div>
+
+

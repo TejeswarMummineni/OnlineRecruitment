@@ -228,19 +228,32 @@ namespace DataAccessLayer
         }
         public int PostReject(NewRequirmentEntites ne)
         {
-            var res = db.NewRequirments.Where(x => x.Requirmentid == ne.Requirmentid && x.Status==true);
-            if (res.Count() > 0)
-            {
-
-
-                foreach (var item in res)
+            
+            var res = db.NewRequirments.Where(x => x.Requirmentid == ne.Requirmentid);
+                if (res.Count() > 0)
                 {
-                    item.Status = false;
-                    
+                    foreach (var item in res)
+                    {
+                        Rejected j = new Rejected()
+                        {
+                            EmployeeId = item.EmployeeId,
+                            CompanyDesc = item.JobDesc,
+                            CompanyId = item.CompanyId,
+                            Location = item.Location,
+                            PostDate = item.PostedDate,
+                            LastDate = item.LastDate,
+                            status = 0,
+                            jobName = item.JobName,
+                            jobtype = item.jobtype,
+                            candidatereq = item.candidatereq
+
+                        };
+                        db.Rejecteds.Add(j);
+                    }
+                    db.NewRequirments.Remove(res.First());
+                    db.SaveChanges();
+                    return 1;
                 }
-                db.SaveChanges();
-                return 1;
-            }
             else
             {
                 return 0;
@@ -248,6 +261,7 @@ namespace DataAccessLayer
         }
         public JobApplicantEntites Gamil(JobApplicantEntites ge)
         {
+
             var res = db.JobApplicants.Where(x => x.CandidateId == ge.CandidateId);
             if (res.Count() > 0)
             {

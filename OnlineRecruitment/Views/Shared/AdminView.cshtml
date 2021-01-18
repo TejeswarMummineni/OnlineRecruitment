@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<header>
+    <img src="~/Images/App.jpg" height="5%" width="70%" />
+
+</header>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li> <img src="~/images/p-logo.png" /></li>
+            <li>> <h1>SERARCH JOB</h1></li>
+            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+        </ul>
+    </div>
+</head>
+<body>
+    <div>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        @*<span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>*@
+                    </button>
+
+                </div>
+                
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

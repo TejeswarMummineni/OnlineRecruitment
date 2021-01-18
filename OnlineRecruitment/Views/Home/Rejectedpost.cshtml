@@ -1,0 +1,49 @@
+﻿@model IPagedList<BussinessEntites.RejectedEntites>
+@{
+    ViewBag.Title = "Rejectedpost";
+    Layout = "~/Views/Shared/CompanyView.cshtml";
+}
+
+
+@using PagedList.Mvc;
+@using PagedList;
+<h2>Rejectedpost</h2>
+<table>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            <h1> @Html.DisplayFor(model => item.CompanyId)</h1>
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.jobtype)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.jobName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.CompanyDesc)
+        </td>
+
+        <td>
+            @Html.DisplayFor(model => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.candidatereq)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.PostDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.LastDate)
+        </td>
+    </tr>
+
+    }
+</table>
+<div>
+
+    @Html.PagedListPager(Model, Page => Url.Action("Rejectedpost", "Home", new { Page }))
+    @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+
+</div>

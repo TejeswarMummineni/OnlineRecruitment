@@ -19,5 +19,6 @@ namespace BussinessEntites
         public System.DateTime LastDate { get; set; }
         public string JobName { get; set; }
         public bool Status { get; set; }
+        public Nullable<int> Salary { get; set; }
     }
 }

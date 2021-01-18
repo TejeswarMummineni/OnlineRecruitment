@@ -66,6 +66,7 @@
     <Compile Include="AdminDAL.cs" />
     <Compile Include="ApplicantDAL.cs" />
     <Compile Include="AptitudeDAL.cs" />
+    <Compile Include="CompanyDAL.cs" />
     <Compile Include="JobAppliedDAL.cs" />
     <Compile Include="LoginDAL.cs" />
     <Compile Include="Models\Aptitude_Result.cs">

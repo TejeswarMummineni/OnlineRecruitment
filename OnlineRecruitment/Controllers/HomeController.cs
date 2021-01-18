@@ -21,7 +21,7 @@ namespace OnlineRecruitment.Controllers
         AdminBL ab = new AdminBL();
         ApplicantBL ap = new ApplicantBL();
         WelcomeBL wb = new WelcomeBL();
-   
+        CompanyBL cb = new CompanyBL();
         public ActionResult Login()
         {
             return View();
@@ -52,7 +52,7 @@ namespace OnlineRecruitment.Controllers
             {
                 Session["user"] = log.Email;
                 //  Session["master"] = "CompanyView";
-                 return View("Login", "company");
+                 return View("Login", "CompanyView");
                // return RedirectToAction("About");
             }
             else
@@ -230,17 +230,30 @@ namespace OnlineRecruitment.Controllers
             }
         }
 
-        public ActionResult SelectedCandidates(int? page)
+        public ActionResult SelectedCandidates(CompanyPortalEntites se,int? page)
         {
-            if (Session["user"] != null)
-            {
-                var res = wb.SelectedCandidates();
-                return View(res.ToList().ToPagedList(page ?? 1, 2));
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            se.Email = Session["user"].ToString();
+            var res = cb.SelectCandidate(se);
+            return View(res.ToList().ToPagedList(page ?? 1, 2));
+            
+        }
+        public ActionResult Rejectedpost(CompanyPortalEntites re, int? page)
+        {
+            re.Email = Session["user"].ToString();
+            var res = cb.rejectedpost(re);
+            return View(res.ToList().ToPagedList(page ?? 1, 2));
+
+        }
+        public ActionResult Newreq()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Newreq(NewRequirmentEntites ne)
+        {
+            var res = cb.Newreq(ne);
+            ViewData["a"] = "Posted Sucessfully";
+            return View();
         }
         public ActionResult company()
         {
