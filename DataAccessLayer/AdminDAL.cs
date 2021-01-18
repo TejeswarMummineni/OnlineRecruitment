@@ -228,21 +228,33 @@ namespace DataAccessLayer
         }
         public int PostReject(NewRequirmentEntites ne)
         {
-            
-            var res = db.NewRequirments.Where(x => x.Requirmentid == ne.Requirmentid);
+            string rejid;
+            try
+            {
+
+                var res = db.NewRequirments.Where(x => x.Requirmentid == ne.Requirmentid);
+                var cd = db.Rejecteds.OrderByDescending(t => t.Rejectedid).FirstOrDefault();
+                if (cd == null)
+                {
+                    rejid = "REJ10000";
+                }
+                else
+                {
+                    rejid = "REJ" + (Convert.ToInt32(cd.Rejectedid.Substring(3, 5)) + 1).ToString();
+                }
                 if (res.Count() > 0)
                 {
                     foreach (var item in res)
                     {
                         Rejected j = new Rejected()
                         {
+                            Rejectedid=rejid,
                             EmployeeId = item.EmployeeId,
                             CompanyDesc = item.JobDesc,
                             CompanyId = item.CompanyId,
                             Location = item.Location,
                             PostDate = item.PostedDate,
                             LastDate = item.LastDate,
-                            status = 0,
                             jobName = item.JobName,
                             jobtype = item.jobtype,
                             candidatereq = item.candidatereq
@@ -254,11 +266,26 @@ namespace DataAccessLayer
                     db.SaveChanges();
                     return 1;
                 }
-            else
+                else
+                {
+                    return 0;
+                }
+            }
+            catch(Exception e)
             {
                 return 0;
             }
         }
+        public JobApplicantEntites Viewresume(JobApplicantEntites jp)
+        {
+            var newreq = db.JobApplicants.Where(x => x.CandidateId == jp.CandidateId);
+            foreach (var item in newreq)
+            {
+                jp.resume = item.resume;
+            }
+            return jp;
+        }
+       
         public JobApplicantEntites Gamil(JobApplicantEntites ge)
         {
 

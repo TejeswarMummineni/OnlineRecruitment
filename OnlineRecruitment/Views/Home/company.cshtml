@@ -1,65 +1,66 @@
-﻿@model BussinessEntites.CompanyPortalEntites
+﻿
+@model BussinessEntites.CompanyPortalEntites
+
 @{
-    ViewBag.Title = "company";
+    Layout = null;
+    <link href="~/Content/companyregistration.css" rel="stylesheet" />
 }
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width" />
+<title>company</title>
+<center><h1 style="color:blueviolet">Company Registration</h1></center>
+<html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<h1>Applicant Details Registration Form</h1>
+</head>
+<body>
 
-
-<div>
-    <form action="company" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            @Html.LabelFor(c => c.CompanyName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(c => c.CompanyName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c => c.CompanyName)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(c => c.Password, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(c => c.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c => c.Password)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(c => c.CompanyDesc, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(c => c.CompanyDesc, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c => c.CompanyDesc)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(c => c.Email, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(c => c.Email, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c => c.Email)
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(c => c.Location, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(c => c.Location, new { @class = "form-control" })
-                @Html.ValidationMessageFor(c => c.Location)
-            </div>
-
-        </div>
+    <div>
+        <form action="company" method="post" enctype="multipart/form-data">
+            <div class="form-group">
 
 
-        <div>
-            <label>upload your company LOGO</label>
-            <div class="editor-label">
-                <input type="file" name="Logo" />
-                @*@Html.ValidationSummary("customError")*@
+
+
+                <div style="background-color:#41aaa2; height:400px; width:400px; border-radius:30px; text-align:center;" class="col-md-offset-4">
+                    <h1 style="text-align:center; padding-top:30px; color:#ffffff;">Sign Up</h1>
+
+                    <div class="col-sm-12" style="padding-top:10px;">
+                        <input placeholder="CompanyName" @Html.TextBoxFor(c => c.CompanyName, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="col-sm-12" style="padding-top:10px;">
+                        <input placeholder="Password" @Html.PasswordFor(c => c.Password, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="col-sm-12" style="padding-top:10px;">
+                        <input placeholder="CompanyDesc" @Html.TextBoxFor(c => c.CompanyDesc, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="col-sm-12" style="padding-top:10px;">
+                        <input placeholder="Email" @Html.TextBoxFor(c => c.Email, new { @class = "form-control", required = "required" })
+                    </div>
+                    <div class="col-sm-12" style="padding-top:10px;">
+                        <input placeholder="Location" @Html.TextBoxFor(c => c.Location, new { @class = "form-control", required = "required" })<br />
+                    </div>
+                    <div class="editor-label" style="padding-top:10px" ;>
+                        <input type="file" name="Logo" />
+                    </div>
+                    <div class="col-sm-12" style="padding-top:10px;">
+                        <input type="submit" class="btn btn-primary" value="SUBMIT" />
+                    </div>
+                </div>
+
+
+
+
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-primary" value="SUBMIT" />
-            </div>
-        </div>
-    </form>
-    @ViewData["status"]
-</div>
+        </form>
+    </div>
+    <center><h2 style="color:red">@ViewData["status"]</h2></center>
+
+
+
+</body>
+</html>
 

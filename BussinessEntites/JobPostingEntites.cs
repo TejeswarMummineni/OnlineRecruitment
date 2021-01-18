@@ -18,5 +18,6 @@ namespace BussinessEntites
         public string JobName { get; set; }
         public string JobType { get; set; }
         public Nullable<int> CandidateReq { get; set; }
+        public Nullable<int> Salary { get; set; }
     }
 }

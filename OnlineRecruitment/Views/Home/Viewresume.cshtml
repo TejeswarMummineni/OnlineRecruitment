@@ -1,0 +1,8 @@
+﻿@{ ViewBag.Title = "Viewresume";
+    @Model.resume; }
+
+<h2>Viewresume</h2>
+<div align="center">
+    <iframe src="~/resume/@Model.resume" width="800" height="600"></iframe>
+</div>
+@Html.ActionLink("Back", "Back")

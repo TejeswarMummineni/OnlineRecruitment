@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/Applicant.cshtml";
+    
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -12,24 +13,29 @@
         <label> Search Job Type</label>
         <input type="text" name="Search" placeholder="Enter Job Sector" />
         <input type="submit" value="Submit" />
+
     }
 </p>
 <table>
     @foreach (var item in Model)
     {
-        <tr >
-            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
-                <h1> @Html.DisplayFor(model => item.JobName)</h1>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.JobName)
             </td>
-            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
-
-                <h3> @Html.DisplayFor(model => item.JobType)</h3>
-            </td>
-            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
-                @Html.DisplayFor(model => item.JobId)
-            </td>
-            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
+            <td>
+                @Html.DisplayFor(model => item.JobType)
+            <td>
                 @Html.DisplayFor(model => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.CompanyId)
             </td>
         </tr>
         using (Html.BeginForm("CandidateClick", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
@@ -42,7 +48,7 @@
 </table>
 <div>
 
-    @Html.PagedListPager(Model, Page => Url.Action("Index","Home",new {Page, Search = Request.QueryString["Search"] }))
+    @Html.PagedListPager(Model, Page => Url.Action("Index", "Home", new { Page, Search = Request.QueryString["Search"] }))
     @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
 
 </div>

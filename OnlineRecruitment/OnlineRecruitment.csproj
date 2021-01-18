@@ -177,12 +177,21 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\companyregistration.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\registration.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\admin.jpg" />
+    <Content Include="images\backimg.jpg" />
+    <Content Include="images\backimg2.jpg" />
+    <Content Include="images\backimg3.png" />
+    <Content Include="images\backimg4.jpg" />
+    <Content Include="images\candidate.png" />
+    <Content Include="images\conpany.png" />
     <Content Include="images\user clip.png" />
     <Content Include="images\p-logo.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -236,6 +245,7 @@
     <Content Include="Views\Home\Rejectedpost.cshtml" />
     <Content Include="Views\Shared\AdminView.cshtml" />
     <Content Include="Views\Home\Testsub.cshtml" />
+    <Content Include="Views\Home\Viewresume.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

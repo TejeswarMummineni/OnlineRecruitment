@@ -37,7 +37,7 @@ namespace OnlineRecruitment.Controllers
                 Session["user"] = log.Email;
                
                 // Session["master"] = "EmployeeView";
-                return View("Admin", "AdminView");
+                return View("About", "AdminView");
               // return RedirectToAction("");
 
             }
@@ -45,14 +45,14 @@ namespace OnlineRecruitment.Controllers
             {
                 Session["user"] = log.Email;
                 // Session["master"] = "CandidateView";
-                  return View("Login", "Applicant");
+                  return View("About", "Applicant");
                // return RedirectToAction("Index");
             }
             else if (res == 3)
             {
                 Session["user"] = log.Email;
                 //  Session["master"] = "CompanyView";
-                 return View("Login", "CompanyView");
+                 return View("About", "CompanyView");
                // return RedirectToAction("About");
             }
             else
@@ -133,7 +133,6 @@ namespace OnlineRecruitment.Controllers
             {
                 ViewData["a"] = "Application Approved Sucessfully";
                 Response.Redirect("NewRequirment");
-
             }
             else
             {
@@ -167,10 +166,22 @@ namespace OnlineRecruitment.Controllers
         public ActionResult profile(JobApplicantEntites je)
         {
             je.Email = Session["user"].ToString();
+            ap.Profile(je);
+            return View(je);
+        }
+        public ActionResult Viewresume(JobApplicantEntites jp)
+        {
+
+            var res = ab.Viewresume(jp);
+
+            return View(jp);
+        }
+        public ActionResult Back()
+        {
+            Response.Redirect("TotalApplied");
             return View();
         }
-        
-            public ActionResult Gmail(JobApplicantEntites jp)
+        public ActionResult Gmail(JobApplicantEntites jp)
         {
 
             ab.Gamil(jp);
@@ -224,7 +235,9 @@ namespace OnlineRecruitment.Controllers
                 //  var user="linga@gmail.com";
                 //    var res = wb.saveresult(Int32.Parse(marks), Email);
                 var res = ba.saveresult(Int32.Parse(marks), Email);
-                return View(b);
+           
+            return View(b);
+            
            
             
         }
@@ -284,7 +297,7 @@ namespace OnlineRecruitment.Controllers
                 try
                 {
                     Logo.SaveAs(fullPath);
-                    cp.Logo = fullPath;
+                    cp.Logo = FileName;
 
                 }
 

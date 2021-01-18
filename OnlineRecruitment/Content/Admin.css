@@ -1,13 +1,3 @@
 ﻿body {
    background-color:goldenrod;
 }
-.col-sm-4 {
-    border: outset;
-    border-color: black;
-    margin: 30px;
-    color: darkmagenta;
-    background-color: aquamarine;
-    background-clip: border-box;
-    width: 500px;
-    height: 250px;
-}
