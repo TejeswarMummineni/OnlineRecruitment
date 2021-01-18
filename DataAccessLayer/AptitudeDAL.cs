@@ -21,7 +21,7 @@ namespace DataAccessLayer
             TestResult test = new TestResult();
             test.CandidateId = data.CandidateId;
             test.Marks = (byte)marks;
-            test.JobId = "JOB10000";
+            test.JobId = "JOB10001";
             db.TestResults.Add(test);
 
             return db.SaveChanges();

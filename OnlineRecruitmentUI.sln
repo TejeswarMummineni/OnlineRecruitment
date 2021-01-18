@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitment", "OnlineRecruitment\OnlineRecruitment.csproj", "{ABDE0813-B4B6-4104-A6F4-E80686011A73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rllproject", "Rllproject\Rllproject.csproj", "{ED12D394-C225-4D5F-A840-FDF30456F000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{288137D7-440A-4EE8-9444-C0161004AB04}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABDE0813-B4B6-4104-A6F4-E80686011A73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED12D394-C225-4D5F-A840-FDF30456F000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED12D394-C225-4D5F-A840-FDF30456F000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED12D394-C225-4D5F-A840-FDF30456F000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED12D394-C225-4D5F-A840-FDF30456F000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288137D7-440A-4EE8-9444-C0161004AB04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288137D7-440A-4EE8-9444-C0161004AB04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288137D7-440A-4EE8-9444-C0161004AB04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288137D7-440A-4EE8-9444-C0161004AB04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,65 +3,70 @@
     ViewBag.Title = "Newreq";
     Layout = "~/Views/Shared/CompanyView.cshtml";
 }
+<style>
+    body {
+        background-image: url('../../images/candidate.png');
+    }
 
-<h2>Newreq</h2>
+</style>
+<center><h2>New Requirments</h2></center>
 
 @using (Html.BeginForm("Newreq", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
 
     <div class="form-group">
-        @Html.LabelFor(c => c.EmployeeId, new { @class = "col-md-2 control-label" })
+        <lable class="col-md-2 control-label"> EmployeeId</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.EmployeeId, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.EmployeeId, new { @class = "form-control", required = "required" })
 
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.CompanyId, new { @class = "col-md-2 control-label" })
+        <lable class="col-md-2 control-label"> CompanyId</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.CompanyId, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.CompanyId, new { @class = "form-control", required = "required" })
 
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.jobtype, new { @class = "col-md-2 control-label" })
+        <lable class="col-md-2 control-label"> Job Type</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.jobtype, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.jobtype, new { @class = "form-control", required = "required" })
 
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(c => c.JobName, new { @class = "col-md-2 control-label" })
+        <lable class="col-md-2 control-label"> Job Name</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.JobName, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.JobName, new { @class = "form-control", required = "required" })
 
         </div>
     </div>
     <div class="form-group">
         <lable class="col-md-2 control-label"> Job description</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.JobDesc, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.JobDesc, new { @class = "form-control" , required = "required" })
 
         </div>
     </div>
     <div class="form-group">
         <lable class="col-md-2 control-label">Salary</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.Salary, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.Salary, new { @class = "form-control" , required = "required" })
 
         </div>
     </div>
     <div class="form-group">
         <lable class="col-md-2 control-label"> Location</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.Location, new { @class = "form-control" })
+            @Html.TextBoxFor(c => c.Location, new { @class = "form-control", required = "required" })
 
         </div>
     </div>
     <div class="form-group">
         <lable class="col-md-2 control-label">ApplyDate</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.PostedDate, new { @class = "form-control",@type="date" })
+            @Html.TextBoxFor(c => c.PostedDate, new { @class = "form-control",@type="date" , required = "required" })
 
         </div>
     </div>

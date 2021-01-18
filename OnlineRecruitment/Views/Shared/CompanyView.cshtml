@@ -18,13 +18,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    @Html.ActionLink("Home ", "About", "Selected Candidates", "Rejected Candidates", "Logout", null, new { area = "" }, new { @class = "navbar-brand" })
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-
-                        <li>@Html.ActionLink("New Request", "newreq", "Home")</li>
-                        <li>@Html.ActionLink("Selected Candidates", "SelectedCandidates", "Home")</li>
+                        <li>@Html.ActionLink("Home", "About", "Home")</li>
+                        <li>@Html.ActionLink("NewRequest", "newreq", "Home")</li>
+                        <li>@Html.ActionLink("Selected-Candidates", "SelectedCandidates", "Home")</li>
                         <li>@Html.ActionLink("Rejected Posts", "Rejectedpost", "Home")</li>
                         <li>@Html.ActionLink("Logout", "Login", "Home")</li>
 

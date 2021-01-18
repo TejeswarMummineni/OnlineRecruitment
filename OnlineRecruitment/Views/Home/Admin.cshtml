@@ -3,76 +3,125 @@
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/AdminView.cshtml";
 }
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <link href="~/Content/Admin.css" rel="stylesheet" />
-<h2>Admin</h2>
-@using (Html.BeginForm("RegisterUser", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
+<div class="container">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+        </ol>
 
-    <a href="RegisterUser">
-        <div class="col-sm-4">
-            <h2><label>REGISTERED-USERS</label></h2>
-            @Html.DisplayFor(x => x.RegisterUsers)
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                @using (Html.BeginForm("RegisterUser", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    <a href="RegisterUser">
+                        <div class="col-sm-4">
+                            <h2>REGISTERED-USERS</h2>
+                            <h2> @Html.DisplayFor(x => x.RegisterUsers)</h2>
+                        </div>
+                    </a>
+
+                }
+            </div>
+
+            <div class="item">
+                @using (Html.BeginForm("RegistredCompines", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    <a href="RegistredCompines">
+                        <div class="col-sm-4">
+                            <h2>REGISTERED-COMPANIES</h2>
+                            <h2>@Html.DisplayFor(x => x.RegisterCompines)</h2>
+                        </div>
+                    </a>
+
+                }
+            </div>
+
+            <div class="item">
+                @using (Html.BeginForm("PLacedApplicants", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    <a href="PLacedApplicants">
+                        <div class="col-sm-4">
+                            <h2>PLACED-APPLICANTS</h2>
+                            <h2>@Html.DisplayFor(x => x.gotplaced)</h2>
+                        </div>
+                    </a>
+
+                }
+            </div>
+            <div class="item">
+                @using (Html.BeginForm("JanuaryMonthApplieds", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    <a href="JanuaryMonthApplieds">
+                        <div class="col-sm-4">
+                            <h2>PLACED IN JANUARY</h2>
+                            <h2> @Html.DisplayFor(x => x.reqmonth)</h2>
+                        </div>
+                    </a>
+
+                }
+            </div>
+            <div class="item">
+                @using (Html.BeginForm("TotalApplied", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    <a href="TotalApplied">
+                        <div class="col-sm-4">
+                            <h2>APPLIED-USERS</h2>
+                            <h2>@Html.DisplayFor(x => x.usersapplied)</h2>
+                        </div>
+                    </a>
+
+                }
+            </div>
+            <div class="item">
+
+                @using (Html.BeginForm("NewRequirment", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    <a href="NewRequirment">
+                        <div class="col-sm-4">
+                            <h2>NEW JOBS-REQUIRMENT</h2>
+                            <h2> @Html.DisplayFor(x => x.newrequirment)</h2>
+                        </div>
+                    </a>
+
+                }
+
+            </div>
         </div>
-    </a>
 
-}
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
 
-@using (Html.BeginForm("RegistredCompines", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
 
-    <a href="RegistredCompines">
-        <div class="col-sm-4">
-            <h2><label>REGISTERED-COMPINES</label></h2>
-            @Html.DisplayFor(x => x.RegisterCompines)
-        </div>
-    </a>
 
-}
-@using (Html.BeginForm("PLacedApplicants", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
 
-    <a href="PLacedApplicants">
-        <div class="col-sm-4">
-            <h2><label>PLACED-APPLICANTS</label></h2>
-            @Html.DisplayFor(x => x.gotplaced)
-        </div>
-    </a>
 
-}
-@using (Html.BeginForm("JanuaryMonthApplieds", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
-
-    <a href="JanuaryMonthApplieds">
-        <div class="col-sm-4">
-            <h2><label>PLACED IN THE MONTH JANUARY</label></h2>
-            @Html.DisplayFor(x => x.reqmonth)
-        </div>
-    </a>
-
-}
-@using (Html.BeginForm("TotalApplied", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
-
-    <a href="TotalApplied">
-        <div class="col-sm-4">
-            <h2><label>APPLIED-USERS</label></h2>
-            @Html.DisplayFor(x => x.usersapplied)
-        </div>
-    </a>
-
-}
-@using (Html.BeginForm("NewRequirment", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-{
-
-    <a href="NewRequirment">
-        <div class="col-sm-4">
-            <h2><label>NEW JOBS-REQUIRMENT</label></h2>
-            @Html.DisplayFor(x => x.newrequirment)
-        </div>
-    </a>
-
-}
 
 
 

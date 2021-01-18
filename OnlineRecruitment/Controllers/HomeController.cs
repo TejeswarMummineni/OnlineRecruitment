@@ -68,7 +68,7 @@ namespace OnlineRecruitment.Controllers
         {
       
             var res = wb.Welcomepage(Search);
-            return View(res.ToList().ToPagedList(page ?? 1, 1));
+            return View(res.ToList().ToPagedList(page ?? 1, 5));
             
         }      
         public ActionResult CandidateClick(JobAppliedEntites ja,string Email)
@@ -221,7 +221,7 @@ namespace OnlineRecruitment.Controllers
             }
             else
             {
-                return Redirect("Login");
+                return Redirect("Log");
             }
         }
         [HttpPost]
@@ -253,7 +253,24 @@ namespace OnlineRecruitment.Controllers
                 return RedirectToAction("Login");
             }
         }
+        public ActionResult log(LoginEntites ja)
+        {
+            Session["user"] = ja.Email;
+            LoginBL lb = new LoginBL();
+            var res=lb.log(ja);
+            if(res > 0)
+            {
+                
+                return Redirect("AptitudeTest");
+            }
+            else
+            {
+                ViewData["a"] = "Access Denied!! invalid credentials";
+                return View();
+            }
 
+
+        }
         public ActionResult SelectedCandidates(CompanyPortalEntites se,int? page)
         {
             se.Email = Session["user"].ToString();
@@ -387,8 +404,6 @@ namespace OnlineRecruitment.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
         public ActionResult Logout()

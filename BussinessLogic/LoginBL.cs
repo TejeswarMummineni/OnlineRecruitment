@@ -11,9 +11,15 @@ namespace BussinessLogic
     public class LoginBL
     {
         LoginDAL ld = new LoginDAL();
-            public int Loginvalidate(LoginEntites log)
-            {
-                return ld.Loginvalidate(log);
-            }
+        public int Loginvalidate(LoginEntites log)
+        {
+            return ld.Loginvalidate(log);
+        }
+
+        LogDAL l = new LogDAL();
+        public int log(LoginEntites ja)
+        {
+            return l.log(ja);
+        }
     }
 }

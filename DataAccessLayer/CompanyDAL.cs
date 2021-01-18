@@ -13,35 +13,41 @@ namespace DataAccessLayer
         OnlineRecruitmentEntities db = new OnlineRecruitmentEntities();
         public int Newreq(NewRequirmentEntites ne)
         {
-            
-            var cd = db.NewRequirments.OrderByDescending(t => t.Requirmentid).FirstOrDefault();
-            
-            if (cd == null)
+            try
             {
-                ne.Requirmentid = "REQ10000";
+                var cd = db.NewRequirments.OrderByDescending(t => t.Requirmentid).FirstOrDefault();
+
+                if (cd == null)
+                {
+                    ne.Requirmentid = "REQ10000";
+                }
+                else
+                {
+                    ne.Requirmentid = "REQ" + (Convert.ToInt32(cd.Requirmentid.Substring(3, 5)) + 1).ToString();
+                }
+                NewRequirment c = new NewRequirment()
+                {
+                    Requirmentid = ne.Requirmentid,
+                    EmployeeId = ne.EmployeeId,
+                    CompanyId = ne.CompanyId,
+                    jobtype = ne.jobtype,
+                    candidatereq = ne.candidatereq,
+                    Location = ne.Location,
+                    PostedDate = ne.PostedDate,
+                    JobDesc = ne.JobDesc,
+                    LastDate = ne.LastDate,
+                    JobName = ne.JobName,
+                    Status = true,
+                    Salary = ne.Salary
+                };
+                db.NewRequirments.Add(c);
+                db.SaveChanges();
+                return 1;
             }
-            else
+            catch(Exception e)
             {
-               ne.Requirmentid = "REQ" + (Convert.ToInt32(cd.Requirmentid.Substring(3, 5)) + 1).ToString();
+                return 0;
             }
-            NewRequirment c = new NewRequirment()
-            {
-               Requirmentid=ne.Requirmentid,
-               EmployeeId=ne.EmployeeId,
-               CompanyId=ne.CompanyId,
-               jobtype=ne.jobtype,
-               candidatereq=ne.candidatereq,
-               Location=ne.Location,
-               PostedDate=ne.PostedDate,
-               JobDesc=ne.JobDesc,
-               LastDate=ne.LastDate,
-               JobName=ne.JobName,
-               Status=true,
-               Salary=ne.Salary
-            };
-            db.NewRequirments.Add(c);
-            db.SaveChanges();
-            return 1;
         }
         public List<JobApplicantEntites> SelectCandidate(CompanyPortalEntites cp)
         {
