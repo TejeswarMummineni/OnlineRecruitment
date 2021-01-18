@@ -13,13 +13,6 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li> <img src="~/images/p-logo.png" /></li>
-            <li>> <h1>SERARCH JOB</h1></li>
-            <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
-        </ul>
-    </div>
 </head>
 <body>
     <div>
@@ -33,7 +26,14 @@
                     </button>
 
                 </div>
-                
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Admin", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="container body-content">

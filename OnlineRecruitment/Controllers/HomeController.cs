@@ -37,8 +37,8 @@ namespace OnlineRecruitment.Controllers
                 Session["user"] = log.Email;
                
                 // Session["master"] = "EmployeeView";
-               // return View("Login", "EmployeeView");
-                return RedirectToAction("ApllicantDashBoard");
+                return View("Admin", "AdminView");
+              // return RedirectToAction("");
 
             }
             else if (res == 2)
@@ -193,29 +193,40 @@ namespace OnlineRecruitment.Controllers
             ViewBag.Message = "Mail Has Been Sucessfully Sent";
             return View();
         }
+        public ActionResult Testsub()
+        {
+            return View();
+        }
         public ActionResult AptitudeTest()
         {
-            
-            var a = ba.storedproc();
+            if (Session["user"] != null)
+            {
+                var a = ba.storedproc();
 
-            return View(a);
+                return View(a);
 
-            // return View(db.Aptitude());
-            // return RedirectToAction("Index");
-
+                // return View(db.Aptitude());
+                // return RedirectToAction("Index");
+            }
+            else
+            {
+                return Redirect("Login");
+            }
         }
         [HttpPost]
         public ActionResult AptitudeTest(string marks)
         {
-            var b = ba.storedproc();
-            AptitudeBL wb = new AptitudeBL();
-            Email = Session["user"].ToString();
-            // var user = Session["user"].ToString();
-            //  var user="linga@gmail.com";
-            //    var res = wb.saveresult(Int32.Parse(marks), Email);
-            var res = ba.saveresult(Int32.Parse(marks), Email);
-            return View(b);
-
+            
+                var b = ba.storedproc();
+                AptitudeBL wb = new AptitudeBL();
+                Email = Session["user"].ToString();
+                // var user = Session["user"].ToString();
+                //  var user="linga@gmail.com";
+                //    var res = wb.saveresult(Int32.Parse(marks), Email);
+                var res = ba.saveresult(Int32.Parse(marks), Email);
+                return View(b);
+           
+            
         }
         
         public ActionResult PreviousPost()

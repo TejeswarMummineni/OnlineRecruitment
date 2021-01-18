@@ -98,7 +98,7 @@
        // alert(count);
 
         $.post("@Url.Action("AptitudeTest", "Home")", { 'marks': count}, function () {
-            alert("Test submitted successfully");
+            window.location.replace("https://localhost:44346/Home/Testsub");
         });
     }
 

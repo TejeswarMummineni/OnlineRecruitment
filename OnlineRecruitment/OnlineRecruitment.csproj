@@ -223,7 +223,6 @@
     <Content Include="Views\Home\NewRequirment.cshtml" />
     <Content Include="Views\Home\PostApprove.cshtml" />
     <Content Include="Views\Home\PostReject.cshtml" />
-    <Content Include="Views\Home\ApllicantDashBoard.cshtml" />
     <Content Include="Views\Home\Gmail.cshtml" />
     <Content Include="Views\Home\AptitudeTest.cshtml" />
     <Content Include="Views\Home\company.cshtml" />
@@ -236,6 +235,7 @@
     <Content Include="Views\Home\SelectedCandidates.cshtml" />
     <Content Include="Views\Home\Rejectedpost.cshtml" />
     <Content Include="Views\Shared\AdminView.cshtml" />
+    <Content Include="Views\Home\Testsub.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

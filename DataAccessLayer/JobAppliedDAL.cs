@@ -15,30 +15,40 @@ namespace DataAccessLayer
         OnlineRecruitmentEntities db = new OnlineRecruitmentEntities();
         public int CandidateClick(JobAppliedEntites ja, String Email)
         {
-            var con = db.JobApplicants.Where(x => x.Email == Email);
-            foreach (var item in con)
+            try
             {
-                Id = item.CandidateId;
-            }
-            var res2 = db.JobApplieds.Where(x => x.CandidateId == Id).Count();
-            var res = db.JobPostings.Where(x => x.JobId == ja.JobId).Count();
-            if(res < 0 && res2 >0 )
-            {
-                a=0;
-            }
-            else
-            {
-                JobApplied j = new JobApplied()
+                var con = db.JobApplicants.Where(x => x.Email == Email);
+
+                foreach (var item in con)
                 {
-                    JobId = ja.JobId,
-                    CandidateId=Id,
-                    Status=false  
-                };
-                db.JobApplieds.Add(j);
-                db.SaveChanges();
-                a = 1;
+                    Id = item.CandidateId;
+                }
+                var res2 = db.JobApplieds.Where(x => x.CandidateId == Id).Count();
+                var res = db.JobPostings.Where(x => x.JobId == ja.JobId).Count();
+                if (res > 0 && res2 > 0)
+                {
+                    a = 0;
+                }
+                else
+                {
+                    JobApplied j = new JobApplied()
+                    {
+                        JobId = ja.JobId,
+                        CandidateId = Id,
+                        Status = false
+                    };
+                    db.JobApplieds.Add(j);
+                    db.SaveChanges();
+                    a = 1;
+                }
+            }
+            catch (Exception e)
+            {
+                return 0;
             }
             return a;
+           
+            
         }
     }
 }

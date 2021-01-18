@@ -17,18 +17,18 @@
 <table>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
+        <tr >
+            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
                 <h1> @Html.DisplayFor(model => item.JobName)</h1>
             </td>
-            <td>
+            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
 
                 <h3> @Html.DisplayFor(model => item.JobType)</h3>
             </td>
-            <td>
+            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
                 @Html.DisplayFor(model => item.JobId)
             </td>
-            <td>
+            <td style="border: 2px solid black; text-align: center; word-wrap: break-word;">
                 @Html.DisplayFor(model => item.JobDescription)
             </td>
         </tr>
