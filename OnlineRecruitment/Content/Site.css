@@ -169,3 +169,10 @@
         cursor: not-allowed;
         background-color: #ffffff;
     }
+
+    table{
+        border:3px solid blue;
+    }
+    tr{
+        border:3px hidden;
+    }
