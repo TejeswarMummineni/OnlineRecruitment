@@ -52,7 +52,7 @@
     <div class="form-group">
         <lable class="col-md-2 control-label">Salary</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.Salary, new { @class = "form-control" , required = "required" })
+            @Html.TextBoxFor(c => c.Salary, new { @class = "form-control" , required = "required", manlength = "10000000", minlength = "10000" })
 
         </div>
     </div>
@@ -66,7 +66,7 @@
     <div class="form-group">
         <lable class="col-md-2 control-label">ApplyDate</lable>
         <div class="col-md-10">
-            @Html.TextBoxFor(c => c.PostedDate, new { @class = "form-control",@type="date" , required = "required" })
+            @Html.TextBoxFor(c => c.PostedDate, new { @class = "form-control",@type="date" , required = "required" ,min = "2021-01-19", max = "2021-04-01" })
 
         </div>
     </div>

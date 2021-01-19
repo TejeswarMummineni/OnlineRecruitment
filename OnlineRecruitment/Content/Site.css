@@ -170,9 +170,7 @@
         background-color: #ffffff;
     }
 
-    table{
-        border:3px solid blue;
-    }
-    tr{
-        border:3px hidden;
+   th,tr{
+        padding:inherit;
+        margin:3px;
     }

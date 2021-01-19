@@ -9,33 +9,62 @@
 <table>
     @foreach (var item in Model)
     {
+        
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobName)
+            </th>
             <td>
-                <h1> @Html.DisplayFor(model => item.jobtype)</h1>
+                 @Html.DisplayFor(model => item.JobName)
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().jobtype)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.jobtype)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyId)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.CompanyId)
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobDesc)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.JobDesc)
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Location)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.Location)
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().candidatereq)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.candidatereq)
             </td>
         </tr>
-        using (Html.BeginForm("PostApprove", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-        {
+       
+            <tr><th> <a href="PostApprove?Requirmentid=@item.Requirmentid">Approve</a></th>
 
-            <tr><td> <a href="PostApprove?Requirmentid=@item.Requirmentid">Approve</a></td></tr>
-
-        }
-        using (Html.BeginForm("PostReject", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-        {
-            <tr><td> <a href="PostReject?Requirmentid=@item.Requirmentid">Reject</a></td></tr>
-        }
+        
+       
+            <th> <a href="PostReject?Requirmentid=@item.Requirmentid">Reject</a></th></tr>
+        
 
     }
 </table>

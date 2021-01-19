@@ -185,42 +185,49 @@ namespace DataAccessLayer
         }
         public int PostApprove(NewRequirmentEntites ne)
         {
-            string jobid;
-            var res = db.NewRequirments.Where(x => x.Requirmentid == ne.Requirmentid && x.Status==true);
-            var cd = db.JobPostings.OrderByDescending(t => t.JobId).FirstOrDefault();
-            if (cd == null)
+            try
             {
-                jobid = "JOB10000";
-            }
-            else
-            {
-                jobid = "JOB" + (Convert.ToInt32(cd.JobId.Substring(3, 5)) + 1).ToString();
-            }
-            if (res.Count() > 0)
-            {
-                foreach (var item in res)
+                string jobid;
+                var res = db.NewRequirments.Where(x => x.Requirmentid == ne.Requirmentid && x.Status == true);
+                var cd = db.JobPostings.OrderByDescending(t => t.JobId).FirstOrDefault();
+                if (cd == null)
                 {
-                    JobPosting j = new JobPosting()
-                    {
-                        JobId = jobid,
-                        JobDescription = item.JobDesc,
-                        CompanyId = item.CompanyId,
-                        Location = item.Location,
-                        PostedDate = item.PostedDate,
-                        LastDate = item.LastDate,
-                        Status = true,
-                        JobName = item.JobName,
-                        JobType = item.jobtype,
-                        CandidateReq = item.candidatereq
-
-                    };
-                    db.JobPostings.Add(j);
+                    jobid = "JOB10000";
                 }
-                db.NewRequirments.Remove(res.First());
-                db.SaveChanges();
-                return 1;
+                else
+                {
+                    jobid = "JOB" + (Convert.ToInt32(cd.JobId.Substring(3, 5)) + 1).ToString();
+                }
+                if (res.Count() > 0)
+                {
+                    foreach (var item in res)
+                    {
+                        JobPosting j = new JobPosting()
+                        {
+                            JobId = jobid,
+                            JobDescription = item.JobDesc,
+                            CompanyId = item.CompanyId,
+                            Location = item.Location,
+                            PostedDate = item.PostedDate,
+                            LastDate = item.LastDate,
+                            Status = true,
+                            JobName = item.JobName,
+                            JobType = item.jobtype,
+                            CandidateReq = item.candidatereq
+
+                        };
+                        db.JobPostings.Add(j);
+                    }
+                    db.NewRequirments.Remove(res.First());
+                    db.SaveChanges();
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
             }
-            else
+            catch(Exception e)
             {
                 return 0;
             }

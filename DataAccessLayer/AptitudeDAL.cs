@@ -13,19 +13,24 @@ namespace DataAccessLayer
         OnlineRecruitmentEntities db = new OnlineRecruitmentEntities();
         public int saveresult(int marks, string email)
         {
+            try {
+
+                var data = db.JobApplicants.Where(x => x.Email == email).FirstOrDefault();
 
 
-            var data = db.JobApplicants.Where(x => x.Email == email).FirstOrDefault();
+                TestResult test = new TestResult();
+                test.CandidateId = data.CandidateId;
+                test.Marks = (byte)marks;
+                test.JobId = "JOB10001";
+                db.TestResults.Add(test);
 
+                return db.SaveChanges();
 
-            TestResult test = new TestResult();
-            test.CandidateId = data.CandidateId;
-            test.Marks = (byte)marks;
-            test.JobId = "JOB10001";
-            db.TestResults.Add(test);
-
-            return db.SaveChanges();
-
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
         }
 
         public List<AptitudeEntities> storeproc()

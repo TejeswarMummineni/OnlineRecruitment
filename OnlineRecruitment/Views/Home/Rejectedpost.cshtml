@@ -11,36 +11,51 @@
 <table>
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            <h1> @Html.DisplayFor(model => item.CompanyId)</h1>
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.jobtype)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.jobName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.CompanyDesc)
-        </td>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().jobName)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.jobName)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().jobtype)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.jobtype)
+            </td>
+            </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyDesc)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.CompanyDesc)
+            </td>
+        </tr>
+        
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Location)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyId)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.CompanyId)
+            </td>
+        </tr>
 
-        <td>
-            @Html.DisplayFor(model => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.candidatereq)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.PostDate)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.LastDate)
-        </td>
-    </tr>
 
-    }
-</table>
+        }
+    </table>
 <div>
 
     @Html.PagedListPager(Model, Page => Url.Action("Rejectedpost", "Home", new { Page }))

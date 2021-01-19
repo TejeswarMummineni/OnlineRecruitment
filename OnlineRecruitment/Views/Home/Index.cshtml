@@ -19,31 +19,59 @@
 <table>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.JobName)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.JobType)
-            <td>
-                @Html.DisplayFor(model => item.JobDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Salary)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.CompanyId)
-            </td>
-        </tr>
-        using (Html.BeginForm("CandidateClick", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-        {
+<a class="a">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().JobName)
+        </th>
+        <td>
+        @Html.DisplayFor(model => item.JobName)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().JobType)
+        </th>
+        <td>
+            @Html.DisplayFor(model => item.JobType)
+        </td>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().JobDescription)
+        </th>
+        <td>
+            @Html.DisplayFor(model => item.JobDescription)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Salary)
+        </th>
+        <td>
+            @Html.DisplayFor(model => item.Salary)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Location)
+        </th>
+        <td>
+            @Html.DisplayFor(model => item.Location)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().CompanyId)
+        </th>
+        <td>
+            @Html.DisplayFor(model => item.CompanyId)
+        </td>
+    </tr>
 
-            <tr><td> <a href="CandidateClick?jobid=@item.JobId">Apply</a></td></tr>
 
-        }
+    <tr> <th><a href="CandidateClick?jobid=@item.JobId">Apply</a></th></tr>
+
+ </a>
     }
 </table>
 <div>

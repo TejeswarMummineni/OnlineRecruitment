@@ -9,35 +9,74 @@
 <table>
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            <h1> @Html.DisplayFor(model => item.JobName)</h1>
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.JobType)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.CompanyId)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.JobDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.CandidateReq)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.PostedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.LastDate)
-        </td>
-    </tr>
+        
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobName)
+            </th>
+            <td>
+                <h1> @Html.DisplayFor(model => item.JobName)</h1>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobType)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.JobType)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyId)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.CompanyId)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobDescription)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.JobDescription)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Location)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CandidateReq)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.CandidateReq)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PostedDate)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.PostedDate)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().LastDate)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.LastDate)
+            </td>
+        </tr>
 
-    }
-</table>
+        }
+    </table>
 <div>
 
     

@@ -293,7 +293,14 @@ namespace OnlineRecruitment.Controllers
         public ActionResult Newreq(NewRequirmentEntites ne)
         {
             var res = cb.Newreq(ne);
-            ViewData["a"] = "Posted Sucessfully";
+            if (res > 0)
+            {
+                ViewData["a"] = "Posted Sucessfully";
+            }
+            else
+            {
+                ViewData["a"] = "somthing went wrong";
+            }
             return View();
         }
         public ActionResult company()
@@ -392,6 +399,7 @@ namespace OnlineRecruitment.Controllers
             }
             else
             {
+                ViewData["status"] = "Something went wrong..!!";
                 return View();
             }
         }
@@ -404,7 +412,7 @@ namespace OnlineRecruitment.Controllers
 
         public ActionResult Contact()
         {
-            return View();
+            return Redirect("http://localhost:4200/contacts");
         }
         public ActionResult Logout()
         {

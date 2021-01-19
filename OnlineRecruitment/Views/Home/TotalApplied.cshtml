@@ -11,37 +11,68 @@
         @foreach (var item in Model)
         {
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().CandidateId)
+                </th>
+
                 <td>
-                    <h1> @Html.DisplayFor(model => item.CandidateId)</h1>
+                    @Html.DisplayFor(model => item.CandidateId)
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Name)
+                </th>
                 <td>
                     @Html.DisplayFor(model => item.Name)
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Dob)
+                </th>
                 <td>
                     @Html.DisplayFor(model => item.Dob)
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Phone)
+                </th>
                 <td>
                     @Html.DisplayFor(model => item.Phone)
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Email)
+                </th>
                 <td>
                     @Html.DisplayFor(model => item.Email)
                 </td>
-                <td>
-                    @Html.DisplayFor(model => item.Gender)
-                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().UniversityName)
+                </th>
                 <td>
                     @Html.DisplayFor(model => item.UniversityName)
                 </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().Location)
+                </th>
                 <td>
                     @Html.DisplayFor(model => item.Location)
                 </td>
             </tr>
-            <tr><td> <a href="Viewresume?CandidateId=@item.CandidateId">Showresume</a></td></tr>
+            <tr><th> <a href="Viewresume?CandidateId=@item.CandidateId">Showresume</a></th></tr>
             <tr>
-                <td> <a href="Gmail?CandidateId=@item.CandidateId">Approve</a></td>
+                <th> <a href="Gmail?CandidateId=@item.CandidateId">Approve</a></th>
 
 
-                <td> <a href="PostReject?Requirmentid=@item.CandidateId">Reject</a></td>
+                <th> <a href="PostReject?Requirmentid=@item.CandidateId">Reject</a></th>
             </tr>
 
 

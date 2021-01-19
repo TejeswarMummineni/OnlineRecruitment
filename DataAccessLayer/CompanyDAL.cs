@@ -15,8 +15,9 @@ namespace DataAccessLayer
         {
             try
             {
+               
                 var cd = db.NewRequirments.OrderByDescending(t => t.Requirmentid).FirstOrDefault();
-
+                
                 if (cd == null)
                 {
                     ne.Requirmentid = "REQ10000";
@@ -44,6 +45,7 @@ namespace DataAccessLayer
                 db.SaveChanges();
                 return 1;
             }
+           
             catch(Exception e)
             {
                 return 0;

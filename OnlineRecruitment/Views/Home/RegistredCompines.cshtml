@@ -10,25 +10,40 @@
     @foreach (var item in Model)
     {
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyId)
+            </th>
             <td>
                 <h1> @Html.DisplayFor(model => item.CompanyId)</h1>
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyName)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.CompanyName)
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyDesc)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.CompanyDesc)
             </td>
-            <td>
-                @Html.DisplayFor(model => item.Logo)
-            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Location)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.Location)
             </td>
         </tr>
 
-    }
-</table>
+        }
+    </table>
 <div>
 
     @Html.PagedListPager(Model, page => Url.Action("RegisteredCompines", new { page }))

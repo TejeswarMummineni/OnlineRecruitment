@@ -12,32 +12,58 @@
     @foreach (var item in Model)
     {
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobName)
+            </th>
             <td>
-                @Html.DisplayFor(model => item.JobId)
+                @Html.DisplayFor(model => item.JobName)
             </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobType)
+            </th>
             <td>
-                @Html.DisplayFor(model => item.JobId)
+                @Html.DisplayFor(model => item.JobType)
             </td>
-            <td>
-                <h1> @Html.DisplayFor(model => item.JobName)</h1>
-            </td>
-            <td>
-
-                <h3> @Html.DisplayFor(model => item.JobType)</h3>
-            </td>
-
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().JobDescription)
+            </th>
             <td>
                 @Html.DisplayFor(model => item.JobDescription)
             </td>
         </tr>
-        using (Html.BeginForm("CandidateClick", "Home", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
-        {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Salary)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.Salary)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Location)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.Location)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyId)
+            </th>
+            <td>
+                @Html.DisplayFor(model => item.CompanyId)
+            </td>
+        </tr>
+      
+        <tr><th> <a href="CandidateClick?jobid=@item.JobId">Apply</a></th></tr>
 
-            <tr><td> <a href="CandidateClick?jobid=@item.JobId">Apply</a></td></tr>
-
+        
         }
-    }
-</table>
+    </table>
 <div>
 
     @Html.PagedListPager(Model, Page => Url.Action("Appliedjobs", "Home", new { Page, Search = Request.QueryString["Search"] }))

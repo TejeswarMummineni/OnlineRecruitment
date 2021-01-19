@@ -6,31 +6,39 @@
 <link href="~/Content/Site.css" rel="stylesheet" />
 <h2>profile</h2>
 
-<table>
-           <tr>
-            <td>
-             <h1> @Html.DisplayFor(model => model.CandidateId)</h1>
-            </td>
-            <td>
+<>
+          
+            <tr>
+              <lable>Id</lable>
+              @Html.DisplayFor(model => model.CandidateId)
+            </tr>
+            <tr>
+                <lable>Name</lable>
                 @Html.DisplayFor(model => model.Name)
-            </td>
-            <td>
+            </tr>
+            <tr>
+                <lable>Date of Birth</lable>
                 @Html.DisplayFor(model => model.Dob)
-            </td>
-            <td>
+            </tr>
+            <tr>
+                <lable>Phone</lable>
                 @Html.DisplayFor(model => model.Phone)
-            </td>
-            <td>
+            </tr>
+            <tr>
+                <lable>Email</lable>
                 @Html.DisplayFor(model => model.Email)
-            </td>
-            <td>
+            </tr>
+            <tr>
+                <lable>Gender</lable>
                 @Html.DisplayFor(model => model.Gender)
-            </td>
-            <td>
+            </tr>
+            <tr>
+                <lable>UniversityNme</lable>
                 @Html.DisplayFor(model => model.UniversityName)
-            </td>
-            <td>
+            </tr>
+            <tr>
+                <lable>Location</lable>
                 @Html.DisplayFor(model => model.Location)
-            </td>
-        </tr>
+            </tr>
+        
     </table>
