@@ -19,7 +19,6 @@
 <table>
     @foreach (var item in Model)
     {
-<a class="a">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().JobName)
@@ -35,6 +34,7 @@
         <td>
             @Html.DisplayFor(model => item.JobType)
         </td>
+        </tr>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().JobDescription)
@@ -70,8 +70,7 @@
 
 
     <tr> <th><a href="CandidateClick?jobid=@item.JobId">Apply</a></th></tr>
-
- </a>
+    
     }
 </table>
 <div>
